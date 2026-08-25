@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness & životný štýl | AI HUB</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="hero">
+    <h1>🏋️ Fitness & životný štýl</h1>
+    <p>Plány pre pohyb, návyky a zdravší životný štýl.</p>
+  </header>
+
+  <main>
+
+    <h2 class="section-title">Čo potrebuješ?</h2>
+
+    <div class="quick-tools">
+
+      <button>🏋️ Vytvor tréningový plán</button>
+
+      <button>📅 Vytvor 30-dňový plán</button>
+
+      <button>🎯 Pomôž mi nastaviť cieľ</button>
+
+      <button>🥗 Vytvor plán stravovania</button>
+
+    </div>
+
+    <a href="index.html" class="back-button">← Späť na AI HUB</a>
+
+  </main>
+
+</body>
+</html>
