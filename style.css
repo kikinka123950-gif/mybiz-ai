@@ -145,3 +145,69 @@ html {
   font-size: 15px;
   cursor: pointer;
 }
+.form-card {
+  background: white;
+  border-radius: 25px;
+  padding: 35px;
+  max-width: 700px;
+  margin: 30px auto;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.form-card h2 {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.form-card label {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.form-card input,
+.form-card select,
+.form-card textarea {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: inherit;
+  background: #fafafa;
+}
+
+.form-card textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-card button {
+  width: 100%;
+  margin-top: 30px;
+  padding: 18px;
+  border: none;
+  border-radius: 15px;
+  font-size: 17px;
+  cursor: pointer;
+  background: #6c63ff;
+  color: white;
+}
+
+.tool-button {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  background: #f1f1f5;
+  padding: 18px;
+  margin: 10px 0;
+  border-radius: 15px;
+  font-size: 17px;
+  color: #222;
+}
+
+#result {
+  margin-top: 30px;
+  line-height: 1.7;
+}
