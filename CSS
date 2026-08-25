@@ -1,35 +1,111 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f7fb;
+  color: #222;
+}
+
+.hero {
+  text-align: center;
+  padding: 70px 20px 50px;
+  background: linear-gradient(135deg, #6c63ff, #9b59b6);
+  color: white;
+}
+
+.hero h1 {
+  font-size: 52px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  max-width: 650px;
+  margin: auto;
+  font-size: 19px;
+  line-height: 1.6;
+}
+
+main {
+  max-width: 1000px;
+  margin: auto;
+  padding: 45px 20px;
+}
+
+.section-title {
+  text-align: center;
+  margin: 20px 0 30px;
+  font-size: 30px;
+}
+
 .categories {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 20px;
+  gap: 22px;
+  margin-bottom: 60px;
 }
 
 .category-card {
   background: white;
-  border-radius: 20px;
-  padding: 30px;
+  border-radius: 22px;
+  padding: 35px 25px;
   text-align: center;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
-  transition: transform 0.2s ease;
 }
 
 .category-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.12);
 }
 
-.category-card .icon {
-  font-size: 45px;
-  margin-bottom: 10px;
+.icon {
+  font-size: 48px;
+  margin-bottom: 15px;
 }
 
 .category-card h2 {
-  margin: 10px 0;
+  margin-bottom: 10px;
+  font-size: 24px;
 }
 
 .category-card p {
   color: #666;
+  line-height: 1.5;
+}
+
+.quick-tools {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.quick-tools button {
+  border: none;
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+  transition: transform 0.2s ease;
+}
+
+.quick-tools button:hover {
+  transform: translateY(-3px);
+}
+
+@media (max-width: 650px) {
+  .categories,
+  .quick-tools {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 40px;
+  }
 }
