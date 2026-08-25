@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Krása & pleť | AI HUB</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="hero">
+    <h1>✨ Krása & pleť</h1>
+    <p>Personalizované rady a pomoc so starostlivosťou o pleť.</p>
+  </header>
+
+  <main>
+
+    <h2 class="section-title">Čo potrebuješ?</h2>
+
+    <div class="quick-tools">
+
+      <button>✨ Vytvor skincare rutinu</button>
+
+      <button>🧴 Pomôž mi vybrať produkty</button>
+
+      <button>📅 Vytvor 30-dňový plán starostlivosti</button>
+
+      <button>💧 Ako sa starať o môj typ pleti?</button>
+
+    </div>
+
+    <a href="index.html" class="back-button">← Späť na AI HUB</a>
+
+  </main>
+
+</body>
+</html>
