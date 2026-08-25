@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skincare poradca | AI HUB</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="hero">
+    <h1>✨ Skincare poradca</h1>
+    <p>Vytvor si personalizovanú rutinu starostlivosti o pleť.</p>
+  </header>
+
+  <main>
+
+    <div class="form-card">
+
+      <h2>Povedz nám niečo o svojej pleti</h2>
+
+      <label for="skinType">Aký máš typ pleti?</label>
+
+      <select id="skinType">
+        <option value="">Vyber možnosť</option>
+        <option>Suchá</option>
+        <option>Mastná</option>
+        <option>Zmiešaná</option>
+        <option>Normálna</option>
+        <option>Citlivá</option>
+        <option>Neviem</option>
+      </select>
+
+
+      <label for="age">Vek</label>
+
+      <input
+        type="number"
+        id="age"
+        placeholder="Napr. 27"
+        min="13"
+        max="100"
+      >
+
+
+      <label for="concerns">Čo ťa na pleti najviac trápi?</label>
+
+      <textarea
+        id="concerns"
+        placeholder="Napr. akné, čierne bodky, suchosť, začervenanie, pigmentové škvrny..."
+      ></textarea>
+
+
+      <label for="products">Čo momentálne používaš?</label>
+
+      <textarea
+        id="products"
+        placeholder="Napíš produkty alebo kozmetiku, ktorú používaš."
+      ></textarea>
+
+
+      <label for="budget">Aký máš približný mesačný rozpočet?</label>
+
+      <select id="budget">
+        <option value="">Vyber možnosť</option>
+        <option>Do 20 €</option>
+        <option>20 – 40 €</option>
+        <option>40 – 70 €</option>
+        <option>70 – 100 €</option>
+        <option>Viac ako 100 €</option>
+      </select>
+
+
+      <button id="createRoutine">
+        ✨ Vytvoriť moju skincare rutinu
+      </button>
+
+      <div id="result"></div>
+
+    </div>
+
+    <a href="krasa.html" class="back-button">
+      ← Späť na Krása & pleť
+    </a>
+
+  </main>
+
+</body>
+</html>
