@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rast podnikania | AI HUB</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f7f7fb;
+            color: #222;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #6c5ce7, #a855b8);
+            color: white;
+            text-align: center;
+            padding: 55px 25px;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            margin: 0 0 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            line-height: 1.5;
+        }
+
+        main {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .question {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            font-size: 17px;
+            margin-bottom: 9px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-size: 16px;
+            background: #fafafa;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            border: none;
+            border-radius: 14px;
+            padding: 18px;
+            font-size: 18px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #6c5ce7, #a855b8);
+            color: white;
+            cursor: pointer;
+        }
+
+        .result {
+            display: none;
+            margin-top: 30px;
+            background: #f3f1ff;
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .back {
+            display: block;
+            margin-top: 30px;
+            color: #5b4bc4;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="hero">
+
+    <h1>📈 Ako môžem rozšíriť svoje podnikanie?</h1>
+
+    <p>
+        Zisti, kde má tvoje podnikanie najväčší potenciál rastu.
+    </p>
+
+</header>
+
+
+<main>
+
+    <div class="card">
+
+        <h2>🚀 Povedz nám niečo o svojom podnikaní</h2>
+
+
+        <div class="question">
+
+            <label>
+                Čomu sa venuje tvoje podnikanie?
+            </label>
+
+            <textarea
+                id="business"
+                placeholder="Napr. kozmetický salón, e-shop, fotografovanie...">
+            </textarea>
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Ako dlho podnikáš?
+            </label>
+
+            <select id="experience">
+
+                <option value="">
+                    Vyber možnosť
+                </option>
+
+                <option>
+                    Začínam
+                </option>
+
+                <option>
+                    Menej ako 1 rok
+                </option>
+
+                <option>
+                    1–3 roky
+                </option>
+
+                <option>
+                    Viac ako 3 roky
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Koľko zákazníkov máš približne mesačne?
+            </label>
+
+            <input
+                id="customers"
+                placeholder="Napr. 50">
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Aký je tvoj približný mesačný príjem?
+            </label>
+
+            <input
+                id="revenue"
+                placeholder="Napr. 3 000 €">
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Čo chceš najviac zlepšiť?
+            </label>
+
+            <select id="goal">
+
+                <option value="">
+                    Vyber možnosť
+                </option>
+
+                <option>
+                    Získať viac zákazníkov
+                </option>
+
+                <option>
+                    Zvýšiť príjem
+                </option>
+
+                <option>
+                    Rozšíriť ponuku
+                </option>
+
+                <option>
+                    Vybudovať tím
+                </option>
+
+                <option>
+                    Začať predávať online
+                </option>
+
+                <option>
+                    Rozšíriť podnikanie do ďalšieho mesta
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Čo ti momentálne najviac bráni v raste?
+            </label>
+
+            <textarea
+                id="problem"
+                placeholder="Napr. málo zákazníkov, čas, peniaze, konkurencia...">
+            </textarea>
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Koľko chceš približne investovať do rastu?
+            </label>
+
+            <input
+                id="investment"
+                placeholder="Napr. 500 € mesačne">
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Ako chceš získavať nových zákazníkov?
+            </label>
+
+            <select id="marketing">
+
+                <option value="">
+                    Vyber možnosť
+                </option>
+
+                <option>
+                    Instagram / TikTok
+                </option>
+
+                <option>
+                    Facebook
+                </option>
+
+                <option>
+                    Google
+                </option>
+
+                <option>
+                    Odporúčania
+                </option>
+
+                <option>
+                    Platená reklama
+                </option>
+
+                <option>
+                    Neviem – chcem odporúčanie
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button onclick="generatePlan()">
+            ✨ Navrhni mi stratégiu rastu
+        </button>
+
+
+        <div id="result" class="result">
+
+            <h2>📋 Tvoja stratégia rastu</h2>
+
+            <p>
+                Výborne! Máme základné informácie o tvojom podnikaní.
+            </p>
+
+            <p>
+                V ďalšom kroku napojíme tento formulár na AI,
+                ktorá ti podľa odpovedí pripraví konkrétnu stratégiu:
+            </p>
+
+            <ul>
+                <li>🎯 čo zmeniť ako prvé</li>
+                <li>👥 ako získať viac zákazníkov</li>
+                <li>💰 ako zvýšiť príjem</li>
+                <li>📱 aký marketing používať</li>
+                <li>🚀 čo môžeš rozšíriť</li>
+                <li>📅 konkrétny 30-dňový plán</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="podnikanie.html"
+        class="back">
+
+        ← Späť na Podnikanie
+
+    </a>
+
+</main>
+
+
+<script>
+
+function generatePlan() {
+
+    document.getElementById("result").style.display = "block";
+
+    document.getElementById("result").scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+</script>
+
+</body>
+</html>
