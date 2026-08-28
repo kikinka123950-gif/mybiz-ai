@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Čo dnes uvariť | AI HUB</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f7f7fb;
+    color: #222;
+}
+
+.hero {
+    background: linear-gradient(135deg, #6c5ce7, #a855b8);
+    color: white;
+    text-align: center;
+    padding: 55px 25px;
+}
+
+.hero h1 {
+    font-size: 40px;
+    margin: 0 0 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+main {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 25px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.question {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 9px;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 16px;
+    background: #fafafa;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+button {
+    width: 100%;
+    border: none;
+    border-radius: 14px;
+    padding: 18px;
+    font-size: 18px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #6c5ce7, #a855b8);
+    color: white;
+    cursor: pointer;
+}
+
+.result {
+    display: none;
+    margin-top: 30px;
+    background: #f3f1ff;
+    border-radius: 20px;
+    padding: 25px;
+}
+
+.recipe {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 15px;
+}
+
+.recipe h3 {
+    margin-top: 0;
+    color: #5b4bc4;
+}
+
+.recipe ul {
+    line-height: 1.8;
+}
+
+.back {
+    display: block;
+    margin-top: 30px;
+    color: #5b4bc4;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+.note {
+    background: #fff7e6;
+    padding: 15px;
+    border-radius: 14px;
+    line-height: 1.5;
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header class="hero">
+
+<h1>🍳 Čo si mám dnes uvariť?</h1>
+
+<p>
+Napíš, čo máš doma, a nájdi nápady na jedlá
+bez zbytočného nakupovania.
+</p>
+
+</header>
+
+
+<main>
+
+<div class="card">
+
+<h2>🥘 Čo máš momentálne doma?</h2>
+
+
+<div class="question">
+
+<label>
+Aké potraviny máš k dispozícii?
+</label>
+
+<textarea
+id="ingredients"
+placeholder="Napr. kuracie mäso, ryža, vajcia, paradajky, syr, jogurt..."></textarea>
+
+</div>
+
+
+<div class="question">
+
+<label>
+Koľko času chceš variť?
+</label>
+
+<select id="time">
+
+<option value="">Vyber možnosť</option>
+<option>Do 15 minút</option>
+<option>15–30 minút</option>
+<option>30–60 minút</option>
+<option>Viac ako hodinu</option>
+<option>Je mi to jedno</option>
+
+</select>
+
+</div>
+
+
+<div class="question">
+
+<label>
+Koľko porcií potrebuješ?
+</label>
+
+<input
+type="number"
+id="portions"
+placeholder="Napr. 2"
+min="1"
+max="20">
+
+</div>
+
+
+<div class="question">
+
+<label>
+Aké jedlo máš chuť?
+</label>
+
+<select id="type">
+
+<option value="">Vyber možnosť</option>
+<option>Raňajky</option>
+<option>Obed</option>
+<option>Večera</option>
+<option>Sladké</option>
+<option>Slané</option>
+<option>Ľahké jedlo</option>
+<option>Je mi to jedno</option>
+
+</select>
+
+</div>
+
+
+<div class="question">
+
+<label>
+Aký typ kuchyne preferuješ?
+</label>
+
+<select id="cuisine">
+
+<option value="">Vyber možnosť</option>
+<option>Slovenská</option>
+<option>Talianska</option>
+<option>Ázijská</option>
+<option>Mexická</option>
+<option>Stredomorská</option>
+<option>Je mi to jedno</option>
+
+</select>
+
+</div>
+
+
+<div class="question">
+
+<label>
+Aký je tvoj cieľ?
+</label>
+
+<select id="goal">
+
+<option value="">Vyber možnosť</option>
+<option>Chcem ľahké jedlo</option>
+<option>Chcem vysoký obsah bielkovín</option>
+<option>Chcem nízkokalorické jedlo</option>
+<option>Chcem sýte jedlo</option>
+<option>Nemám konkrétny cieľ</option>
+
+</select>
+
+</div>
+
+
+<div class="question">
+
+<label>
+Čomu sa chceš vyhnúť?
+</label>
+
+<textarea
+id="avoid"
+placeholder="Napr. mäso, mlieko, ostré jedlá, konkrétne potraviny..."></textarea>
+
+</div>
+
+
+<div class="question">
+
+<label>
+Máš ešte nejakú požiadavku?
+</label>
+
+<textarea
+id="request"
+placeholder="Napr. chcem niečo jednoduché do práce..."></textarea>
+
+</div>
+
+
+<button onclick="findRecipe()">
+
+🍳 Nájsť mi jedlo
+
+</button>
+
+
+<div id="result" class="result">
+
+<h2>👨‍🍳 Čo môžeš dnes uvariť</h2>
+
+<p>
+Podľa tvojich surovín ti systém pripraví vhodné recepty.
+</p>
+
+
+<div class="recipe">
+
+<h3>🍝 Recept č. 1</h3>
+
+<p>
+Po napojení na AI sa sem automaticky doplní
+konkrétny recept podľa tvojich surovín.
+</p>
+
+<ul>
+<li>🥕 potrebné suroviny</li>
+<li>👨‍🍳 postup prípravy</li>
+<li>⏱️ čas prípravy</li>
+<li>🍽️ počet porcií</li>
+<li>📊 orientačné nutričné hodnoty</li>
+</ul>
+
+</div>
+
+
+<div class="recipe">
+
+<h3>🥗 Recept č. 2</h3>
+
+<p>
+Druhá alternatíva podľa toho, čo máš doma.
+</p>
+
+</div>
+
+
+<div class="recipe">
+
+<h3>🍲 Recept č. 3</h3>
+
+<p>
+Tretí návrh, aby si mala/mal z čoho vyberať.
+</p>
+
+</div>
+
+
+<div class="note">
+
+💡 Neskôr môžeme pridať aj možnosť:
+<strong>„Mám doma iba 5 surovín – vymysli mi z nich čo najlepšie jedlo.“</strong>
+
+</div>
+
+</div>
+
+</div>
+
+
+<a
+href="nutrition.html"
+class="back">
+
+← Späť na Strava & výživa
+
+</a>
+
+</main>
+
+
+<script>
+
+function findRecipe() {
+
+document.getElementById("result").style.display = "block";
+
+document.getElementById("result").scrollIntoView({
+    behavior: "smooth"
+});
+
+}
+
+</script>
+
+</body>
+</html>
