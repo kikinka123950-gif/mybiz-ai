@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podnikateľský plán | AI HUB</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="hero">
+    <h1>🚀 Podnikateľský plán</h1>
+    <p>Vytvor si jednoduchý podnikateľský plán pomocou AI.</p>
+</header>
+
+<main>
+
+    <section class="tool-box">
+
+        <h2>Začnme 👇</h2>
+
+        <label>Aký typ podnikania chceš rozbehnúť?</label>
+        <input type="text" id="business" placeholder="Napr. beauty salón">
+
+        <label>V akom meste alebo oblasti?</label>
+        <input type="text" id="location" placeholder="Napr. Nitra">
+
+        <label>Aký máš približný rozpočet?</label>
+        <input type="text" id="budget" placeholder="Napr. 5 000 €">
+
+        <button onclick="generatePlan()">
+            🚀 Vytvoriť podnikateľský plán
+        </button>
+
+        <div id="result"></div>
+
+    </section>
+
+    <a href="index.html" class="back-button">
+        ← Späť na AI HUB
+    </a>
+
+</main>
+
+<script>
+function generatePlan() {
+
+    const business = document.getElementById("business").value;
+    const location = document.getElementById("location").value;
+    const budget = document.getElementById("budget").value;
+
+    document.getElementById("result").innerHTML = `
+        <h2>📋 Tvoj podnikateľský plán</h2>
+
+        <p><strong>Podnikanie:</strong> ${business}</p>
+        <p><strong>Lokalita:</strong> ${location}</p>
+        <p><strong>Rozpočet:</strong> ${budget}</p>
+
+        <hr>
+
+        <p>
+        Super! Teraz môžeme pripraviť kompletný plán:
+        cieľových zákazníkov, služby, ceny, marketing,
+        náklady a možnosti rastu.
+        </p>
+    `;
+}
+</script>
+
+</body>
+</html>
