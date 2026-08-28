@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kalórie a makrá | AI HUB</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f7f7fb;
+    color: #222;
+}
+
+.hero {
+    background: linear-gradient(135deg, #6c5ce7, #a855b8);
+    color: white;
+    text-align: center;
+    padding: 55px 25px;
+}
+
+.hero h1 {
+    font-size: 40px;
+    margin: 0 0 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+main {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 25px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.question {
+    margin-bottom: 22px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 9px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 16px;
+    background: #fafafa;
+}
+
+button {
+    width: 100%;
+    border: none;
+    border-radius: 14px;
+    padding: 18px;
+    font-size: 18px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #6c5ce7, #a855b8);
+    color: white;
+    cursor: pointer;
+}
+
+.result {
+    display: none;
+    margin-top: 30px;
+    background: #f3f1ff;
+    border-radius: 20px;
+    padding: 25px;
+}
+
+.result-box {
+    background: white;
+    border-radius: 15px;
+    padding: 18px;
+    margin-top: 15px;
+}
+
+.result-number {
+    font-size: 28px;
+    font-weight: bold;
+    color: #5b4bc4;
+}
+
+.back {
+    display: block;
+    margin-top: 30px;
+    color: #5b4bc4;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.note {
+    background: #fff7e6;
+    padding: 15px;
+    border-radius: 14px;
+    line-height: 1.5;
+    margin-top: 20px;
+}
+
+h2 {
+    font-size: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<header class="hero">
+
+<h1>🔥 Spočítaj mi kalórie a makrá</h1>
+
+<p>
+Získaj orientačný výpočet denného príjmu
+kalórií a bielkovín, tukov a sacharidov.
+</p>
+
+</header>
+
+
+<main>
+
+<div class="card">
+
+<h2>📊 Tvoje údaje</h2>
+
+<div class="question">
+
+<label>Pohlavie</label>
+
+<select id="gender">
+
+<option value="">Vyber možnosť</option>
+<option value="female">Žena</option>
+<option value="male">Muž</option>
+
+</select>
+
+</div>
+
+
+<div class="question">
+
+<label>Vek</label>
+
+<input
+type="number"
+id="age"
+placeholder="Napr. 27"
+min="15"
+max="100">
+
+</div>
+
+
+<div class="question">
+
+<label>Výška (cm)</label>
+
+<input
+type="number"
+id="height"
+placeholder="Napr. 165"
+min="120"
+max="230">
+
+</div>
+
+
+<div class="question">
+
+<label>Hmotnosť (kg)</label>
+
+<input
+type="number"
+id="weight"
+placeholder="Napr. 65"
+min="30"
+max="250">
+
+</div>
+
+
+<div class="question">
+
+<label>Koľkokrát týždenne cvičíš?</label>
+
+<select id="training">
+
+<option value="">Vyber možnosť</option>
+<option value="1.2">Necvičím / minimum pohybu</option>
+<option value="1.375">1–2× týždenne</option>
+<option value="1.55">3–4× týždenne</option>
+<option value="1.725">5–6× týždenne</option>
+<option value="1.9">Veľmi aktívne</option>
+
+</select>
+
+</div>
+
+
+<div class="question">
+
+<label>Aký je tvoj hlavný cieľ?</label>
+
+<select id="goal">
+
+<option value="">Vyber možnosť</option>
+<option value="lose">Schudnúť</option>
+<option value="maintain">Udržať hmotnosť</option>
+<option value="gain">Nabrať svaly</option>
+
+</select>
+
+</div>
+
+
+<button onclick="calculateMacros()">
+
+🔥 Vypočítať moje kalórie a makrá
+
+</button>
+
+
+<div id="result" class="result">
+
+<h2>📋 Tvoj orientačný výsledok</h2>
+
+
+<div class="result-box">
+
+<p>🔥 Denný kalorický príjem</p>
+
+<div
+id="calories"
+class="result-number">
+</div>
+
+</div>
+
+
+<div class="result-box">
+
+<p>🥩 Bielkoviny</p>
+
+<div
+id="protein"
+class="result-number">
+</div>
+
+</div>
+
+
+<div class="result-box">
+
+<p>🥑 Tuky</p>
+
+<div
+id="fat"
+class="result-number">
+</div>
+
+</div>
+
+
+<div class="result-box">
+
+<p>🍚 Sacharidy</p>
+
+<div
+id="carbs"
+class="result-number">
+</div>
+
+</div>
+
+
+<div class="note">
+
+⚠️ Ide o orientačný výpočet, nie lekárske alebo
+individuálne nutričné odporúčanie. Skutočné energetické
+potreby sa môžu líšiť podľa množstva pohybu, metabolizmu
+a ďalších faktorov.
+
+</div>
+
+</div>
+
+</div>
+
+
+<a
+href="nutrition.html"
+class="back">
+
+← Späť na Strava & výživa
+
+</a>
+
+</main>
+
+
+<script>
+
+function calculateMacros() {
+
+    const gender =
+        document.getElementById("gender").value;
+
+    const age =
+        Number(document.getElementById("age").value);
+
+    const height =
+        Number(document.getElementById("height").value);
+
+    const weight =
+        Number(document.getElementById("weight").value);
+
+    const activity =
+        Number(document.getElementById("training").value);
+
+    const goal =
+        document.getElementById("goal").value;
+
+
+    if (
+        !gender ||
+        !age ||
+        !height ||
+        !weight ||
+        !activity ||
+        !goal
+    ) {
+
+        alert("Prosím vyplň všetky údaje.");
+
+        return;
+
+    }
+
+
+    let bmr;
+
+
+    if (gender === "female") {
+
+        bmr =
+            10 * weight +
+            6.25 * height -
+            5 * age -
+            161;
+
+    } else {
+
+        bmr =
+            10 * weight +
+            6.25 * height -
+            5 * age +
+            5;
+
+    }
+
+
+    let calories =
+        bmr * activity;
+
+
+    if (goal === "lose") {
+
+        calories *= 0.85;
+
+    }
+
+    if (goal === "gain") {
+
+        calories *= 1.10;
+
+    }
+
+
+    calories =
+        Math.round(calories);
+
+
+    let protein;
+
+
+    if (goal === "gain") {
+
+        protein =
+            Math.round(weight * 1.8);
+
+    } else {
+
+        protein =
+            Math.round(weight * 1.6);
+
+    }
+
+
+    const fat =
+        Math.round(weight * 0.8);
+
+
+    const proteinCalories =
+        protein * 4;
+
+    const fatCalories =
+        fat * 9;
+
+
+    let carbs =
+        Math.round(
+            (calories -
+            proteinCalories -
+            fatCalories) / 4
+        );
+
+
+    if (carbs < 0) {
+
+        carbs = 0;
+
+    }
+
+
+    document.getElementById("calories").textContent =
+        calories + " kcal / deň";
+
+
+    document.getElementById("protein").textContent =
+        protein + " g";
+
+
+    document.getElementById("fat").textContent =
+        fat + " g";
+
+
+    document.getElementById("carbs").textContent =
+        carbs + " g";
+
+
+    document.getElementById("result").style.display =
+        "block";
+
+
+    document.getElementById("result").scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+</script>
+
+</body>
+</html>
