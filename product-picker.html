@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Podnikateľský nápad | AI HUB</title>
+    <title>Výber produktov | AI HUB</title>
 
     <style>
         * {
@@ -33,6 +33,7 @@
         .hero p {
             font-size: 20px;
             line-height: 1.5;
+            margin: 0;
         }
 
         main {
@@ -100,10 +101,19 @@
             margin-top: 30px;
             color: #5b4bc4;
             font-weight: bold;
+            text-decoration: none;
         }
 
         h2 {
             font-size: 30px;
+        }
+
+        .hint {
+            display: block;
+            margin-top: 8px;
+            color: #6c5ce7;
+            font-size: 14px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -112,11 +122,11 @@
 
 <header class="hero">
 
-    <h1>💡 Vymysli podnikateľský nápad</h1>
+    <h1>🧴 Pomôž mi vybrať produkty</h1>
 
     <p>
-        AI ti pomôže nájsť podnikateľský nápad podľa tvojich možností,
-        skúseností a záujmov.
+        Zisti, aké typy produktov sa hodia
+        k tvojej pleti, problémom a rozpočtu.
     </p>
 
 </header>
@@ -126,67 +136,43 @@
 
     <div class="card">
 
-        <h2>🚀 Povedz nám niečo o sebe</h2>
+        <h2>✨ Spoznajme tvoju pleť</h2>
 
 
         <div class="question">
 
             <label>
-                Čo ťa baví alebo v čom si dobrá?
+                Aký máš typ pleti?
             </label>
 
-            <textarea
-                id="skills"
-                placeholder="Napr. kozmetika, fotenie, sociálne siete, varenie...">
-            </textarea>
-
-        </div>
-
-
-        <div class="question">
-
-            <label>
-                Aké máš pracovné alebo odborné skúsenosti?
-            </label>
-
-            <textarea
-                id="experience"
-                placeholder="Napr. pracovala som v obchode, som fotografka...">
-            </textarea>
-
-        </div>
-
-
-        <div class="question">
-
-            <label>
-                Koľko času môžeš podnikaniu venovať?
-            </label>
-
-            <select id="time">
+            <select id="skinType">
 
                 <option value="">
                     Vyber možnosť
                 </option>
 
                 <option>
-                    Menej ako 5 hodín týždenne
+                    Suchá
                 </option>
 
                 <option>
-                    5–10 hodín týždenne
+                    Mastná
                 </option>
 
                 <option>
-                    10–20 hodín týždenne
+                    Zmiešaná
                 </option>
 
                 <option>
-                    Viac ako 20 hodín týždenne
+                    Normálna
                 </option>
 
                 <option>
-                    Chcem sa tomu venovať naplno
+                    Citlivá
+                </option>
+
+                <option>
+                    Neviem
                 </option>
 
             </select>
@@ -197,12 +183,13 @@
         <div class="question">
 
             <label>
-                Aký máš približný rozpočet?
+                Aký je tvoj hlavný problém s pleťou?
             </label>
 
-            <input
-                id="budget"
-                placeholder="Napr. 500 €">
+            <textarea
+                id="problem"
+                placeholder="Akné, čierne bodky, suchosť, začervenanie, pigmentácia...">
+            </textarea>
 
         </div>
 
@@ -210,29 +197,29 @@
         <div class="question">
 
             <label>
-                Chceš podnikať online alebo osobne?
+                Ako citlivá je tvoja pleť?
             </label>
 
-            <select id="type">
+            <select id="sensitivity">
 
                 <option value="">
                     Vyber možnosť
                 </option>
 
                 <option>
-                    Iba online
+                    Veľmi citlivá
                 </option>
 
                 <option>
-                    Iba osobne
+                    Trochu citlivá
                 </option>
 
                 <option>
-                    Kombinácia online a osobne
+                    Normálna
                 </option>
 
                 <option>
-                    Neviem – chcem odporúčanie
+                    Neviem
                 </option>
 
             </select>
@@ -243,12 +230,13 @@
         <div class="question">
 
             <label>
-                V akom meste alebo oblasti chceš podnikať?
+                Aké produkty momentálne používaš?
             </label>
 
-            <input
-                id="location"
-                placeholder="Napr. Nitra a okolie">
+            <textarea
+                id="currentProducts"
+                placeholder="Čistiaci gél, krém, SPF, sérum...">
+            </textarea>
 
         </div>
 
@@ -256,52 +244,185 @@
         <div class="question">
 
             <label>
-                Aký príjem by si chcela dosahovať mesačne?
-            </label>
-
-            <input
-                id="income"
-                placeholder="Napr. 2 000 €">
-
-        </div>
-
-
-        <div class="question">
-
-            <label>
-                Čomu sa chceš pri podnikaní vyhnúť?
+                Aké ingrediencie alebo produkty nechceš používať?
             </label>
 
             <textarea
                 id="avoid"
-                placeholder="Napr. nechcem veľké priestory, nechcem veľké investície...">
+                placeholder="Napr. parfumácia, alkohol, konkrétne ingrediencie...">
             </textarea>
+
+            <span
+                class="hint"
+                onclick="setUnknown('avoid')">
+
+                Neviem – odporuč mi vhodné možnosti
+
+            </span>
 
         </div>
 
 
-        <button onclick="generateIdea()">
-            ✨ Vymysli mi podnikateľský nápad
+        <div class="question">
+
+            <label>
+                Koľko chceš približne mesačne minúť na kozmetiku?
+            </label>
+
+            <select id="budget">
+
+                <option value="">
+                    Vyber možnosť
+                </option>
+
+                <option>
+                    Do 20 €
+                </option>
+
+                <option>
+                    20–40 €
+                </option>
+
+                <option>
+                    40–70 €
+                </option>
+
+                <option>
+                    70–100 €
+                </option>
+
+                <option>
+                    Viac ako 100 €
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Kde najradšej nakupuješ kozmetiku?
+            </label>
+
+            <input
+                id="shop"
+                placeholder="Napr. dm, Notino, lekáreň, online...">
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Čo chceš od produktov najviac?
+            </label>
+
+            <select id="priority">
+
+                <option value="">
+                    Vyber možnosť
+                </option>
+
+                <option>
+                    Hydratáciu
+                </option>
+
+                <option>
+                    Menej akné
+                </option>
+
+                <option>
+                    Menej čiernych bodiek
+                </option>
+
+                <option>
+                    Zjednotenie tónu pleti
+                </option>
+
+                <option>
+                    Upokojenie pleti
+                </option>
+
+                <option>
+                    Anti-aging starostlivosť
+                </option>
+
+                <option>
+                    Celkové zlepšenie pleti
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Chceš skôr lacnejšie produkty, strednú triedu alebo prémiovú kozmetiku?
+            </label>
+
+            <select id="level">
+
+                <option value="">
+                    Vyber možnosť
+                </option>
+
+                <option>
+                    Cenovo dostupné
+                </option>
+
+                <option>
+                    Stredná cenová kategória
+                </option>
+
+                <option>
+                    Prémiové
+                </option>
+
+                <option>
+                    Je mi to jedno
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button onclick="findProducts()">
+
+            🧴 Vybrať produkty pre mňa
+
         </button>
 
 
-        <div id="result" class="result">
+        <div
+            id="result"
+            class="result">
 
-            <h2>💡 Tvoj podnikateľský nápad</h2>
+            <h2>✨ Tvoje odporúčania</h2>
 
             <p>
-                Super! Na základe tvojich odpovedí ti AI pripraví
-                konkrétne podnikateľské možnosti.
+                Tvoje odpovede sú pripravené.
+            </p>
+
+            <p>
+                Po napojení na AI ti systém bude vedieť
+                odporučiť konkrétne typy produktov,
+                vhodné ingrediencie a zostaviť nákupný zoznam
+                podľa tvojho rozpočtu.
             </p>
 
             <ul>
-                <li>💡 3–5 vhodných podnikateľských nápadov</li>
-                <li>🎯 pre koho je každý nápad určený</li>
-                <li>💰 odhad potrebnej investície</li>
-                <li>📈 potenciál zárobku</li>
-                <li>📱 ako začať získavať zákazníkov</li>
-                <li>🚀 prvé kroky na spustenie</li>
-                <li>📅 30-dňový plán začiatku</li>
+
+                <li>🧼 čistenie</li>
+                <li>💧 hydratácia</li>
+                <li>✨ sérum</li>
+                <li>☀️ SPF</li>
+                <li>🎯 produkty podľa problému pleti</li>
+
             </ul>
 
         </div>
@@ -310,10 +431,10 @@
 
 
     <a
-        href="podnikanie.html"
+        href="krasa.html"
         class="back">
 
-        ← Späť na Podnikanie
+        ← Späť na Krása & pleť
 
     </a>
 
@@ -322,7 +443,15 @@
 
 <script>
 
-function generateIdea() {
+function setUnknown(id) {
+
+    document.getElementById(id).value =
+        "Neviem – odporuč mi vhodné možnosti.";
+
+}
+
+
+function findProducts() {
 
     document.getElementById("result").style.display = "block";
 
