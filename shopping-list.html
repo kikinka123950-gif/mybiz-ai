@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nákupný zoznam | AI HUB</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f7f7fb;
+    color: #222;
+}
+
+.hero {
+    background: linear-gradient(135deg, #6c5ce7, #a855b8);
+    color: white;
+    text-align: center;
+    padding: 55px 25px;
+}
+
+.hero h1 {
+    font-size: 40px;
+    margin: 0 0 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+main {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 25px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.question {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 9px;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 16px;
+    background: #fafafa;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+button {
+    width: 100%;
+    border: none;
+    border-radius: 14px;
+    padding: 18px;
+    font-size: 18px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #6c5ce7, #a855b8);
+    color: white;
+    cursor: pointer;
+}
+
+.result {
+    display: none;
+    margin-top: 30px;
+    background: #f3f1ff;
+    border-radius: 20px;
+    padding: 25px;
+}
+
+.result h2 {
+    margin-top: 0;
+}
+
+.category {
+    background: white;
+    border-radius: 15px;
+    padding: 18px;
+    margin-top: 15px;
+}
+
+.category h3 {
+    margin-top: 0;
+    color: #5b4bc4;
+}
+
+.category ul {
+    padding-left: 22px;
+    line-height: 1.8;
+}
+
+.back {
+    display: block;
+    margin-top: 30px;
+    color: #5b4bc4;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+.note {
+    background: #fff7e6;
+    padding: 15px;
+    border-radius: 14px;
+    line-height: 1.5;
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header class="hero">
+
+<h1>🛒 Vytvor nákupný zoznam</h1>
+
+<p>
+Vyber si, čo potrebuješ nakúpiť, a vytvor si
+prehľadný zoznam potravín.
+</p>
+
+</header>
+
+
+<main>
+
+<div class="card">
+
+<h2>🛍️ Nastav svoj nákup</h2>
+
+
+<div class="question">
+
+<label>
+Pre koľko ľudí nakupuješ?
+</label>
+
+<input
+type="number"
+id="people"
+placeholder="Napr. 2"
+min="1"
+max="20">
+
+</div>
+
+
+<div class="question">
+
+<label>
+Na koľko dní chceš nakúpiť?
+</label>
+
+<select id="days">
+
+<option value="">Vyber možnosť</option>
+<option>1–2 dni</option>
+<option>3–4 dni</option>
+<option>5–7 dní</option>
+<option>1–2 týždne</option>
+
+</select>
+
+</div>
+
+
+<div class="question">
+
+<label>
+Aký typ stravovania preferuješ?
+</label>
+
+<select id="diet">
+
+<option value="">Vyber možnosť</option>
+<option>Bežná strava</option>
+<option>Vysokoproteínová strava</option>
+<option>Vegetariánska</option>
+<option>Vegánska</option>
+<option>Jednoduchá a lacná strava</option>
+<option>Zdravšia strava</option>
+
+</select>
+
+</div>
+
+
+<div class="question">
+
+<label>
+Aké potraviny chceš určite zaradiť?
+</label>
+
+<textarea
+id="wanted"
+placeholder="Napr. kuracie mäso, ryža, zemiaky, vajcia, jogurt, ovocie..."></textarea>
+
+</div>
+
+
+<div class="question">
+
+<label>
+Aké potraviny nechceš?
+</label>
+
+<textarea
+id="avoid"
+placeholder="Napíš potraviny, ktoré nechceš v zozname."></textarea>
+
+</div>
+
+
+<div class="question">
+
+<label>
+Aký máš približný rozpočet?
+</label>
+
+<select id="budget">
+
+<option value="">Vyber možnosť</option>
+<option>Do 30 €</option>
+<option>30–50 €</option>
+<option>50–80 €</option>
+<option>80–120 €</option>
+<option>Viac ako 120 €</option>
+<option>Neviem</option>
+
+</select>
+
+</div>
+
+
+<div class="question">
+
+<label>
+Kde najčastejšie nakupuješ?
+</label>
+
+<select id="shop">
+
+<option value="">Vyber možnosť</option>
+<option>Supermarket</option>
+<option>Diskont</option>
+<option>Farmárske produkty</option>
+<option>Online</option>
+<option>Je mi to jedno</option>
+
+</select>
+
+</div>
+
+
+<div class="question">
+
+<label>
+Chceš nakupovať čo najlacnejšie?
+</label>
+
+<select id="cheap">
+
+<option value="">Vyber možnosť</option>
+<option>Áno, cena je pre mňa veľmi dôležitá</option>
+<option>Chcem dobrý pomer ceny a kvality</option>
+<option>Na cene mi veľmi nezáleží</option>
+
+</select>
+
+</div>
+
+
+<button onclick="createList()">
+
+🛒 Vytvoriť môj nákupný zoznam
+
+</button>
+
+
+<div id="result" class="result">
+
+<h2>🛍️ Tvoj nákupný zoznam</h2>
+
+<p>
+Zoznam je pripravený podľa tvojich požiadaviek.
+</p>
+
+
+<div class="category">
+
+<h3>🥩 Mäso a bielkoviny</h3>
+
+<ul>
+<li>Kuracie mäso</li>
+<li>Vajcia</li>
+<li>Jogurt / skyr</li>
+<li>Tvaroh alebo cottage cheese</li>
+</ul>
+
+</div>
+
+
+<div class="category">
+
+<h3>🍚 Prílohy</h3>
+
+<ul>
+<li>Ryža</li>
+<li>Zemiaky</li>
+<li>Ovsené vločky</li>
+<li>Celozrnné pečivo</li>
+</ul>
+
+</div>
+
+
+<div class="category">
+
+<h3>🥦 Zelenina</h3>
+
+<ul>
+<li>Paradajky</li>
+<li>Uhorka</li>
+<li>Paprika</li>
+<li>Listová zelenina</li>
+</ul>
+
+</div>
+
+
+<div class="category">
+
+<h3>🍎 Ovocie</h3>
+
+<ul>
+<li>Jablká</li>
+<li>Banány</li>
+<li>Bobuľové ovocie</li>
+<li>Ovocie podľa sezóny</li>
+</ul>
+
+</div>
+
+
+<div class="category">
+
+<h3>🧂 Ostatné</h3>
+
+<ul>
+<li>Olivový olej</li>
+<li>Koreniny</li>
+<li>Orechy a semienka</li>
+<li>Potraviny podľa tvojho jedálnička</li>
+</ul>
+
+</div>
+
+
+<div class="note">
+
+💡 Toto je zatiaľ ukážkový zoznam.
+Po napojení na AI sa bude generovať automaticky
+podľa tvojho jedálnička, počtu ľudí, rozpočtu
+a konkrétnych potravín.
+
+</div>
+
+</div>
+
+</div>
+
+
+<a
+href="nutrition.html"
+class="back">
+
+← Späť na Strava & výživa
+
+</a>
+
+</main>
+
+
+<script>
+
+function createList() {
+
+document.getElementById("result").style.display = "block";
+
+document.getElementById("result").scrollIntoView({
+    behavior: "smooth"
+});
+
+}
+
+</script>
+
+</body>
+</html>
