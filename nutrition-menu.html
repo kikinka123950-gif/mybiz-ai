@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="sk">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Jedálniček | AI HUB</title>
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Strava & výživa | AI HUB</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -18,35 +24,50 @@ body {
     color: #222;
 }
 
+/* HERO */
+
 .hero {
     background: linear-gradient(135deg, #6c5ce7, #a855b8);
     color: white;
     text-align: center;
-    padding: 55px 25px;
+    padding: 60px 20px;
 }
 
 .hero h1 {
-    font-size: 40px;
     margin: 0 0 20px;
+    font-size: 42px;
 }
 
 .hero p {
+    margin: 0;
     font-size: 20px;
     line-height: 1.5;
 }
 
+/* MAIN */
+
 main {
-    max-width: 850px;
+    max-width: 900px;
     margin: 40px auto;
     padding: 0 20px;
 }
+
+/* CARD */
 
 .card {
     background: white;
     border-radius: 25px;
     padding: 35px;
+    margin-bottom: 30px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
+
+h2 {
+    font-size: 30px;
+    margin-top: 0;
+}
+
+/* QUESTIONS */
 
 .question {
     margin-bottom: 25px;
@@ -60,8 +81,8 @@ label {
 }
 
 input,
-textarea,
-select {
+select,
+textarea {
     width: 100%;
     padding: 15px;
     border: 1px solid #ddd;
@@ -71,270 +92,407 @@ select {
 }
 
 textarea {
-    min-height: 100px;
+    min-height: 110px;
     resize: vertical;
 }
 
-button {
+/* BUTTON */
+
+.main-button {
     width: 100%;
     border: none;
     border-radius: 14px;
     padding: 18px;
     font-size: 18px;
     font-weight: bold;
-    background: linear-gradient(135deg, #6c5ce7, #a855b8);
     color: white;
+    background: linear-gradient(135deg, #6c5ce7, #a855b8);
     cursor: pointer;
 }
+
+/* RESULT */
 
 .result {
     display: none;
     margin-top: 30px;
-    background: #f3f1ff;
-    border-radius: 20px;
     padding: 25px;
+    border-radius: 20px;
+    background: #f3f1ff;
 }
+
+.result ul {
+    line-height: 1.9;
+}
+
+/* TOOLS */
+
+.tools {
+    display: grid;
+    gap: 16px;
+}
+
+.tool-button {
+    display: block;
+    text-decoration: none;
+    background: #f1f1f6;
+    color: #5b4bc4;
+    border-radius: 16px;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.tool-button:hover {
+    transform: translateY(-2px);
+    background: #e8e5ff;
+}
+
+/* BACK */
 
 .back {
     display: block;
-    margin-top: 30px;
+    margin: 30px 0 50px;
     color: #5b4bc4;
+    font-size: 18px;
     font-weight: bold;
     text-decoration: none;
 }
 
-h2 {
-    font-size: 30px;
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero p {
+        font-size: 18px;
+    }
+
+    .card {
+        padding: 25px 20px;
+    }
+
 }
 
-.note {
-    background: #fff7e6;
-    padding: 15px;
-    border-radius: 14px;
-    line-height: 1.5;
-    margin-top: 20px;
-}
 </style>
+
 </head>
+
 
 <body>
 
+
 <header class="hero">
 
-<h1>🍽️ Vytvor mi jedálniček</h1>
+    <h1>🍎 Strava & výživa</h1>
 
-<p>
-Vytvor si jedálniček podľa svojho cieľa,
-preferencií, rozpočtu a životného štýlu.
-</p>
+    <p>
+        Jedálničky, kalórie, recepty a praktická pomoc
+        so zdravším stravovaním.
+    </p>
 
 </header>
 
+
 <main>
+
+
+<!-- JEDÁLNIČEK -->
 
 <div class="card">
 
-<h2>🥗 Nastavme tvoj jedálniček</h2>
+    <h2>🥗 Vytvor si jedálniček</h2>
 
-<div class="question">
+    <div class="question">
 
-<label>Aký je tvoj hlavný cieľ?</label>
+        <label>
+            Aký je tvoj hlavný cieľ?
+        </label>
 
-<select id="goal">
+        <select id="goal">
 
-<option value="">Vyber možnosť</option>
-<option>Schudnúť</option>
-<option>Udržať si hmotnosť</option>
-<option>Nabrať svaly</option>
-<option>Zvýšiť energiu</option>
-<option>Jesť zdravšie</option>
-<option>Zlepšiť svoje stravovacie návyky</option>
+            <option value="">
+                Vyber možnosť
+            </option>
 
-</select>
+            <option>
+                Chcem schudnúť
+            </option>
 
-</div>
+            <option>
+                Chcem udržať hmotnosť
+            </option>
 
-<div class="question">
+            <option>
+                Chcem nabrať svaly
+            </option>
 
-<label>Koľko jedál denne ti vyhovuje?</label>
+            <option>
+                Chcem sa stravovať zdravšie
+            </option>
 
-<select id="meals">
+        </select>
 
-<option value="">Vyber možnosť</option>
-<option>2 jedlá</option>
-<option>3 jedlá</option>
-<option>4 jedlá</option>
-<option>5 jedál</option>
-<option>Neviem – navrhni mi</option>
+    </div>
 
-</select>
 
-</div>
+    <div class="question">
 
-<div class="question">
+        <label>
+            Koľko jedál denne chceš?
+        </label>
 
-<label>Aké potraviny máš rada/rád?</label>
+        <select id="meals">
 
-<textarea
-id="favoriteFoods"
-placeholder="Napr. kuracie mäso, ryža, zemiaky, ovocie, jogurt..."></textarea>
+            <option value="">
+                Vyber možnosť
+            </option>
 
-</div>
+            <option>3 jedlá</option>
+            <option>4 jedlá</option>
+            <option>5 jedál</option>
+            <option>6 jedál</option>
 
-<div class="question">
+        </select>
 
-<label>Aké potraviny nechceš jesť?</label>
+    </div>
 
-<textarea
-id="avoidFoods"
-placeholder="Napíš potraviny, ktoré nemáš rada/rád alebo ich nechceš v jedálničku."></textarea>
 
-</div>
+    <div class="question">
 
-<div class="question">
+        <label>
+            Čo preferuješ jesť?
+        </label>
 
-<label>Máš nejaké stravovacie obmedzenia alebo preferencie?</label>
+        <textarea
+            id="foods"
+            placeholder="Napr. kuracie mäso, ryža, zemiaky, ovocie, jogurt...">
+        </textarea>
 
-<select id="diet">
+    </div>
 
-<option value="">Vyber možnosť</option>
-<option>Bez obmedzení</option>
-<option>Vegetariánska strava</option>
-<option>Vegánska strava</option>
-<option>Bez laktózy</option>
-<option>Bez lepku</option>
-<option>Iné</option>
 
-</select>
+    <div class="question">
 
-</div>
+        <label>
+            Čomu sa chceš vyhnúť?
+        </label>
 
-<div class="question">
+        <textarea
+            id="avoid"
+            placeholder="Napr. ryby, huby, orechy...">
+        </textarea>
 
-<label>Koľko času chceš venovať vareniu?</label>
+    </div>
 
-<select id="cooking">
 
-<option value="">Vyber možnosť</option>
-<option>Minimum – rýchle jedlá</option>
-<option>Do 30 minút</option>
-<option>30–60 minút</option>
-<option>Čas mi neprekáža</option>
+    <div class="question">
 
-</select>
+        <label>
+            Máš nejaké alergie alebo intolerancie?
+        </label>
 
-</div>
+        <textarea
+            id="allergies"
+            placeholder="Ak nie, napíš Nie.">
+        </textarea>
 
-<div class="question">
+    </div>
 
-<label>Aký máš približný rozpočet na jedlo?</label>
 
-<select id="budget">
+    <div class="question">
 
-<option value="">Vyber možnosť</option>
-<option>Nízky rozpočet</option>
-<option>Stredný rozpočet</option>
-<option>Vyšší rozpočet</option>
-<option>Neviem</option>
+        <label>
+            Chceš pri jedálničku aj recepty a postup prípravy?
+        </label>
 
-</select>
+        <select id="recipes">
 
-</div>
+            <option value="">
+                Vyber možnosť
+            </option>
 
-<div class="question">
+            <option>Áno</option>
 
-<label>Chceš, aby sa jedlá počas týždňa opakovali?</label>
+            <option>Nie</option>
 
-<select id="repeat">
+            <option>
+                Iba pri zložitejších jedlách
+            </option>
 
-<option value="">Vyber možnosť</option>
-<option>Áno – chcem jednoduché varenie</option>
-<option>Nie – chcem každý deň niečo iné</option>
-<option>Kombinácia</option>
+        </select>
 
-</select>
+    </div>
 
-</div>
 
-<div class="question">
+    <button
+        class="main-button"
+        onclick="createMenu()">
 
-<label>Chceš pri jedlách aj recepty a postup prípravy?</label>
+        🍽️ Vytvoriť môj jedálniček
 
-<select id="recipes">
+    </button>
 
-<option value="">Vyber možnosť</option>
-<option>Áno</option>
-<option>Nie</option>
-<option>Iba pri zložitejších jedlách</option>
 
-</select>
+    <div
+        id="result"
+        class="result">
 
-</div>
+        <h2>
+            🥗 Tvoj jedálniček
+        </h2>
 
-<button onclick="createMenu()">
+        <p>
+            Tvoje odpovede sú pripravené na spracovanie AI.
+        </p>
 
-🍽️ Vytvoriť môj jedálniček
+        <p>
+            Po napojení na AI sa automaticky vytvorí
+            konkrétny jedálniček podľa tvojho cieľa,
+            preferencií a požiadaviek.
+        </p>
 
-</button>
+        <ul>
 
-<div id="result" class="result">
+            <li>🌅 Raňajky</li>
 
-<h2>🥗 Tvoj jedálniček je pripravený</h2>
+            <li>🍲 Obed</li>
 
-<p>
-Tvoje odpovede sú pripravené na spracovanie AI.
-</p>
+            <li>🍽️ Večera</li>
 
-<p>
-Po napojení na AI ti systém vytvorí konkrétny jedálniček
-podľa tvojho cieľa a preferencií.
-</p>
+            <li>🍎 Desiaty a olovranty</li>
 
-<ul>
+            <li>🛒 Nákupný zoznam</li>
 
-<li>🍳 raňajky</li>
-<li>🥗 obedy</li>
-<li>🍽️ večere</li>
-<li>🍎 desiaty a olovranty</li>
-<li>🛒 nákupný zoznam</li>
-<li>📖 recepty a postupy</li>
-<li>📊 orientačné nutričné hodnoty</li>
+            <li>📖 Recepty a postupy</li>
 
-</ul>
+            <li>📊 Orientačné nutričné hodnoty</li>
 
-<div class="note">
+        </ul>
 
-⚠️ Výživový plán je všeobecné odporúčanie. Pri zdravotných
-problémoch, alergiách alebo špecifických diétnych potrebách
-je vhodné konzultovať stravu s odborníkom.
+    </div>
 
 </div>
 
-</div>
+
+<!-- ĎALŠIE NÁSTROJE -->
+
+<div class="card">
+
+    <h2>
+        🛠️ Ďalšie nástroje
+    </h2>
+
+    <div class="tools">
+
+
+        <a
+            href="macro-calculator.html"
+            class="tool-button">
+
+            🔥 Spočítaj mi kalórie a makrá
+
+        </a>
+
+
+        <a
+            href="shopping-list.html"
+            class="tool-button">
+
+            🛒 Vytvor nákupný zoznam
+
+        </a>
+
+
+        <a
+            href="what-cook-today.html"
+            class="tool-button">
+
+            🍳 Čo si mám dnes uvariť?
+
+        </a>
+
+
+        <a
+            href="healthy-swaps.html"
+            class="tool-button">
+
+            🥗 Zdravšie alternatívy jedál
+
+        </a>
+
+
+    </div>
 
 </div>
 
-<a href="nutrition.html" class="back">
 
-← Späť na Strava & výživa
+<a
+    href="index.html"
+    class="back">
+
+    ← Späť na AI HUB
 
 </a>
 
+
 </main>
+
 
 <script>
 
 function createMenu() {
 
-document.getElementById("result").style.display = "block";
+    const goal =
+        document.getElementById("goal").value;
 
-document.getElementById("result").scrollIntoView({
-    behavior: "smooth"
-});
+    const meals =
+        document.getElementById("meals").value;
+
+    const foods =
+        document.getElementById("foods").value;
+
+    const allergies =
+        document.getElementById("allergies").value;
+
+    const recipes =
+        document.getElementById("recipes").value;
+
+
+    if (
+        goal === "" ||
+        meals === "" ||
+        foods.trim() === "" ||
+        allergies.trim() === "" ||
+        recipes === ""
+    ) {
+
+        alert(
+            "Prosím vyplň všetky potrebné otázky."
+        );
+
+        return;
+
+    }
+
+
+    document.getElementById("result").style.display =
+        "block";
+
+
+    document.getElementById("result").scrollIntoView({
+        behavior: "smooth"
+    });
 
 }
 
 </script>
 
+
 </body>
+
 </html>
