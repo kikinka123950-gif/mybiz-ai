@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cenotvorba | AI HUB</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f7f7fb;
+            color: #222;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #6c5ce7, #a855b8);
+            color: white;
+            text-align: center;
+            padding: 55px 25px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin: 0 0 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        main {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .progress {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            padding: 12px 5px;
+            border-radius: 12px;
+            background: #e4e4ec;
+            color: #777;
+            font-size: 14px;
+        }
+
+        .progress-step.active {
+            background: #6c5ce7;
+            color: white;
+            font-weight: bold;
+        }
+
+        .card {
+            background: white;
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-top: 0;
+        }
+
+        .subtitle {
+            color: #777;
+            font-size: 17px;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        .question {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            font-size: 17px;
+            margin-bottom: 9px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-size: 16px;
+            background: #fafafa;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 35px;
+        }
+
+        button {
+            border: none;
+            border-radius: 14px;
+            padding: 16px 25px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .next {
+            background: #6c5ce7;
+            color: white;
+            margin-left: auto;
+        }
+
+        .back {
+            background: #e8e8ef;
+            color: #333;
+        }
+
+        .generate {
+            width: 100%;
+            background: linear-gradient(135deg, #6c5ce7, #a855b8);
+            color: white;
+            font-size: 19px;
+            padding: 18px;
+        }
+
+        .result {
+            display: none;
+            margin-top: 30px;
+            background: #f3f1ff;
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .back-home {
+            display: block;
+            margin: 30px 0;
+            color: #5b4bc4;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .card {
+                padding: 25px 20px;
+            }
+
+            .progress-step {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="hero">
+
+    <h1>💰 Pomôž mi s cenotvorbou</h1>
+
+    <p>
+        Zisti, ako nastaviť ceny tak, aby boli
+        výhodné pre zákazníka a zároveň ziskové pre teba.
+    </p>
+
+</header>
+
+<main>
+
+    <div class="progress">
+
+        <div class="progress-step active">
+            1. Produkt
+        </div>
+
+        <div class="progress-step">
+            2. Náklady
+        </div>
+
+        <div class="progress-step">
+            3. Konkurencia
+        </div>
+
+        <div class="progress-step">
+            4. Cieľ
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+
+        <!-- KROK 1 -->
+
+        <div class="step active">
+
+            <h2>🛍️ 1. Čo predávaš?</h2>
+
+            <p class="subtitle">
+                Začneme tvojím produktom alebo službou.
+            </p>
+
+
+            <div class="question">
+
+                <label>
+                    Čo predávaš alebo akú službu ponúkaš?
+                </label>
+
+                <textarea
+                    id="product"
+                    placeholder="Napr. kozmetické služby, torty, oblečenie...">
+                </textarea>
+
+            </div>
+
+
+            <div class="question">
+
+                <label>
+                    Aký je tvoj aktuálny názov produktu alebo služby?
+                </label>
+
+                <input
+                    id="name"
+                    placeholder="Napr. Kompletné líčenie">
+
+            </div>
+
+
+            <div class="question">
+
+                <label>
+                    Aká je tvoja súčasná cena?
+                </label>
+
+                <input
+                    id="currentPrice"
+                    placeholder="Napr. 50 €">
+
+            </div>
+
+
+            <div class="question">
+
+                <label>
+                    Koľko kusov alebo služieb približne predáš mesačne?
+                </label>
+
+                <input
+                    id="monthlySales"
+                    placeholder="Napr. 30">
+
+            </div>
+
+
+            <div class="buttons">
+
+                <button
+                    class="next"
+                    onclick="nextStep()">
+
+                    Ďalej →
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- KROK 2 -->
+
+        <div class="step">
+
+            <h2>📊 2. Tvoje náklady</h2>
+
+            <p class="subtitle">
+                Aby sme vedeli nastaviť správnu cenu,
+                musíme poznať tvoje náklady.
+            </p>
+
+
+            <div class="question">
+
+                <label>
+                    Koľko ťa stojí výroba jedného produktu?
+                </label>
+
+                <input
+                    id="productionCost"
+                    placeholder="Napr. 12 €">
+
+            </div>
+
+
+            <div class="question">
+
+                <label>
+                    Koľko ťa približne stojí jedna služba?
+                </label>
+
+                <input
+                    id="serviceCost"
+                    placeholder="Materiál, energie, čas...">
+
+            </div>
+
+
+            <div class="question">
+
+                <label>
+                    Aké máš mesačné fixné náklady?
+                </label>
+
+                <input
+                    id="fixedCosts"
+                    placeholder="Nájom, energie, software...">
+
+            </div>
+
+
+            <div class="question">
+
+                <label>
+                    Koľko hodín mesačne na tom pracuješ?
+                </label>
+
+                <input
+                    id="hours"
+                    placeholder="Napr. 120 hodín">
+
+            </div>
+
+
+            <div class="question">
+
+                <label>
+                    Koľko chceš približne mesačne zarobiť?
+                </label>
+
+                <input
+                    id="income"
+                    placeholder="Napr. 2 000 €">
+
+            </div>
+
+
+            <div class="buttons">
+
+                <button
+                    class="back"
+                    onclick="prevStep()">
+
+                    ← Späť
+
+                </button>
+
+                <button
+                    class="next"
+                    onclick="nextStep()">
+
+                    Ďalej →
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- KROK 3 -->
+
+        <div class="step">
+
+            <h2>🏪 3. Konkurencia</h2>
+
+            <p class="subtitle">
+                Porovnáme tvoju cenu s trhom.
+            </p>
+
+
+            <div class="question">
+
+                <label>
+                    Koľko približne účtuje konkurencia?
+                </label>
+
+                <input
+                    id="competitionPrice"
+                    placeholder="Napr. 45–60 €">
+
+            </div>
+
+
+            <div class="question">
+
+                <label>
+                    Kto je tvoja hlavná konkurencia?
+                </label>
+
+                <textarea
+                    id="competition"
+                    placeholder="Názvy konkurentov alebo typ konkurencie...">
+                </textarea>
+
+            </div>
+
+
+            <div class="question">
+
+                <label>
+                    Je tvoja ponuka lepšia, podobná alebo jednoduchšia?
+                </label>
+
+                <select id="position">
+
+                    <option value="">
+                        Vyber možnosť
+                    </option>
+
+                    <option>
+                        Lepšia / prémiová
+                    </option>
+
+                    <option>
+                        Podobná konkurencii
+                    </option>
+
+                    <option>
+                        Jednoduchšia / lacnejšia
+                    </option>
+
+                    <option>
+                        Neviem
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="question">
+
+                <label>
+                    Čo zákazník dostane navyše oproti konkurencii?
+                </label>
+
+                <textarea
+                    id="advantage"
+                    placeholder="Bonus, kvalita, servis, rýchlosť...">
+                </textarea>
+
+            </div>
+
+
+            <div class="buttons">
+
+                <button
+                    class="back"
+                    onclick="prevStep()">
+
+                    ← Späť
+
+                </button>
+
+                <button
+                    class="next"
+                    onclick="nextStep()">
+
+                    Ďalej →
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- KROK 4 -->
+
+        <div class="step">
+
+            <h2>🎯 4. Tvoj cieľ</h2>
+
+            <p class="subtitle">
+                Posledné otázky a pripravíme návrh cenotvorby.
+            </p>
+
+
+            <div class="question">
+
+                <label>
+                    Chceš skôr zvýšiť zisk alebo získať viac zákazníkov?
+                </label>
+
+                <select id="priority">
+
+                    <option value="">
+                        Vyber možnosť
+                    </option>
+
+                    <option>
+                        Vyšší zisk
+                    </option>
+
+                    <option>
+                        Viac zákazníkov
+                    </option>
+
+                    <option>
+                        Oboje
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="question">
+
+                <label>
+                    Ako veľmi sa obávaš zvýšenia ceny?
+                </label>
+
+                <select id="fear">
+
+                    <option value="">
+                        Vyber možnosť
+                    </option>
+
+                    <option>
+                        Vôbec
+                    </option>
+
+                    <option>
+                        Trochu
+                    </option>
+
+                    <option>
+                        Veľmi
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="question">
+
+                <label>
+                    Chceš mať viac cenových balíčkov?
+                </label>
+
+                <select id="packages">
+
+                    <option value="">
+                        Vyber možnosť
+                    </option>
+
+                    <option>
+                        Áno
+                    </option>
+
+                    <option>
+                        Nie
+                    </option>
+
+                    <option>
+                        Neviem – navrhni mi
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="question">
+
+                <label>
+                    Máš nejakú špeciálnu požiadavku?
+                </label>
+
+                <textarea
+                    id="request"
+                    placeholder="Napíš, čo chceš pri cenotvorbe vyriešiť...">
+                </textarea>
+
+            </div>
+
+
+            <button
+                class="generate"
+                onclick="generatePlan()">
+
+                ✨ Vypočítať odporúčanú cenotvorbu
+
+            </button>
+
+        </div>
+
+
+
+        <!-- VÝSLEDOK -->
+
+        <div
+            id="result"
+            class="result">
+
+            <h2>
+                📋 Tvoj cenový návrh
+            </h2>
+
+            <p>
+                Dotazník bol úspešne dokončený.
+            </p>
+
+            <p>
+                V ďalšom kroku napojíme tento formulár
+                na AI, ktorá z tvojich odpovedí vypočíta
+                odporúčanú cenu, maržu, cenové balíčky
+                a stratégiu.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="podnikanie.html"
+        class="back-home">
+
+        ← Späť na Podnikanie
+
+    </a>
+
+</main>
+
+
+<script>
+
+    let currentStep = 0;
+
+    const steps =
+        document.querySelectorAll(".step");
+
+    const progress =
+        document.querySelectorAll(".progress-step");
+
+
+    function showStep(number) {
+
+        steps.forEach((step, index) => {
+
+            step.classList.toggle(
+                "active",
+                index === number
+            );
+
+        });
+
+
+        progress.forEach((item, index) => {
+
+            item.classList.toggle(
+                "active",
+                index === number
+            );
+
+        });
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+
+    function nextStep() {
+
+        if (currentStep < steps.length - 1) {
+
+            currentStep++;
+
+            showStep(currentStep);
+
+        }
+
+    }
+
+
+    function prevStep() {
+
+        if (currentStep > 0) {
+
+            currentStep--;
+
+            showStep(currentStep);
+
+        }
+
+    }
+
+
+    function generatePlan() {
+
+        document.getElementById("result").style.display = "block";
+
+        document.getElementById("result").scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
+
+</script>
+
+</body>
+</html>
