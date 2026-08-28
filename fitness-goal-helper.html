@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nastavenie cieľa | AI HUB</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f7f7fb;
+    color: #222;
+}
+
+.hero {
+    background: linear-gradient(135deg, #6c5ce7, #a855b8);
+    color: white;
+    text-align: center;
+    padding: 55px 25px;
+}
+
+.hero h1 {
+    font-size: 40px;
+    margin: 0 0 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+main {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 25px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.question {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 9px;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 16px;
+    background: #fafafa;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+button {
+    width: 100%;
+    border: none;
+    border-radius: 14px;
+    padding: 18px;
+    font-size: 18px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #6c5ce7, #a855b8);
+    color: white;
+    cursor: pointer;
+}
+
+.result {
+    display: none;
+    margin-top: 30px;
+    background: #f3f1ff;
+    border-radius: 20px;
+    padding: 25px;
+}
+
+.back {
+    display: block;
+    margin-top: 30px;
+    color: #5b4bc4;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+.note {
+    background: #fff7e6;
+    padding: 15px;
+    border-radius: 14px;
+    line-height: 1.5;
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header class="hero">
+
+<h1>🎯 Pomôž mi nastaviť cieľ</h1>
+
+<p>
+Pomôžeme ti vytvoriť konkrétny a realistický
+cieľ, ktorý budeš vedieť sledovať.
+</p>
+
+</header>
+
+<main>
+
+<div class="card">
+
+<h2>✨ Nastavme tvoj cieľ</h2>
+
+<div class="question">
+
+<label>Čo chceš dosiahnuť?</label>
+
+<select id="goal">
+
+<option value="">Vyber možnosť</option>
+<option>Schudnúť</option>
+<option>Nabrať svaly</option>
+<option>Spevniť postavu</option>
+<option>Zvýšiť silu</option>
+<option>Zlepšiť kondíciu</option>
+<option>Zlepšiť zdravie a návyky</option>
+<option>Kombinácia cieľov</option>
+
+</select>
+
+</div>
+
+<div class="question">
+
+<label>Čo je pre teba najväčšia motivácia?</label>
+
+<textarea
+id="motivation"
+placeholder="Napr. chcem sa cítiť lepšie, vyzerať lepšie, mať viac energie..."></textarea>
+
+</div>
+
+<div class="question">
+
+<label>Za aký čas chceš dosiahnuť svoj cieľ?</label>
+
+<select id="time">
+
+<option value="">Vyber možnosť</option>
+<option>30 dní</option>
+<option>2–3 mesiace</option>
+<option>3–6 mesiacov</option>
+<option>6–12 mesiacov</option>
+<option>Dlhodobý cieľ</option>
+
+</select>
+
+</div>
+
+<div class="question">
+
+<label>Koľko času môžeš venovať pohybu?</label>
+
+<select id="activity">
+
+<option value="">Vyber možnosť</option>
+<option>Do 30 minút denne</option>
+<option>30–60 minút denne</option>
+<option>1–2 hodiny denne</option>
+<option>Niekoľkokrát týždenne</option>
+<option>Neviem</option>
+
+</select>
+
+</div>
+
+<div class="question">
+
+<label>Čo ti doteraz najviac bránilo dosiahnuť cieľ?</label>
+
+<textarea
+id="obstacle"
+placeholder="Napr. nedostatok času, motivácie, pravidelnosti..."></textarea>
+
+</div>
+
+<div class="question">
+
+<label>Čo chceš zmeniť ako prvé?</label>
+
+<textarea
+id="firstChange"
+placeholder="Napr. začať pravidelne cvičiť, viac chodiť, upraviť stravu..."></textarea>
+
+</div>
+
+<div class="question">
+
+<label>Chceš, aby ti AI vytvorila konkrétny plán?</label>
+
+<select id="plan">
+
+<option value="">Vyber možnosť</option>
+<option>Áno, chcem presný plán</option>
+<option>Áno, ale jednoduchý</option>
+<option>Chcem iba odporúčania</option>
+
+</select>
+
+</div>
+
+<button onclick="createGoal()">
+
+🎯 Nastaviť môj cieľ
+
+</button>
+
+<div id="result" class="result">
+
+<h2>🚀 Tvoj cieľ je pripravený</h2>
+
+<p>
+Na základe tvojich odpovedí ti AI bude vedieť vytvoriť:
+</p>
+
+<ul>
+
+<li>🎯 konkrétny hlavný cieľ</li>
+
+<li>📅 časový plán</li>
+
+<li>📊 merateľné kroky</li>
+
+<li>🏋️ odporúčaný pohyb</li>
+
+<li>🍎 podporné návyky</li>
+
+<li>📈 spôsob sledovania pokroku</li>
+
+<li>🔥 motivačné úlohy</li>
+
+</ul>
+
+<div class="note">
+
+Cieľ by mal byť realistický a prispôsobený tvojim možnostiam.
+Dôležitejšia než extrémny začiatok je dlhodobá pravidelnosť.
+
+</div>
+
+</div>
+
+</div>
+
+<a href="fitness.html" class="back">
+
+← Späť na Fitness & životný štýl
+
+</a>
+
+</main>
+
+<script>
+
+function createGoal() {
+
+document.getElementById("result").style.display = "block";
+
+document.getElementById("result").scrollIntoView({
+    behavior: "smooth"
+});
+
+}
+
+</script>
+
+</body>
+</html>
