@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Starostlivosť podľa typu pleti | AI HUB</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f7f7fb;
+            color: #222;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #6c5ce7, #a855b8);
+            color: white;
+            text-align: center;
+            padding: 55px 25px;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            margin: 0 0 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        main {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .question {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            font-size: 17px;
+            margin-bottom: 9px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-size: 16px;
+            background: #fafafa;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            border: none;
+            border-radius: 14px;
+            padding: 18px;
+            font-size: 18px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #6c5ce7, #a855b8);
+            color: white;
+            cursor: pointer;
+        }
+
+        .result {
+            display: none;
+            margin-top: 30px;
+            background: #f3f1ff;
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .result h2 {
+            color: #5b4bc4;
+        }
+
+        .back {
+            display: block;
+            margin-top: 30px;
+            color: #5b4bc4;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        h2 {
+            font-size: 30px;
+        }
+
+        .note {
+            background: #fff7e6;
+            border-radius: 15px;
+            padding: 15px;
+            margin-top: 20px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="hero">
+
+    <h1>💧 Ako sa starať o môj typ pleti?</h1>
+
+    <p>
+        Zisti, aká rutina a aké návyky môžu byť
+        vhodné pre tvoju pleť.
+    </p>
+
+</header>
+
+
+<main>
+
+    <div class="card">
+
+        <h2>✨ Spoznajme tvoju pleť</h2>
+
+        <div class="question">
+
+            <label>
+                Aký máš typ pleti?
+            </label>
+
+            <select id="skinType">
+
+                <option value="">
+                    Vyber možnosť
+                </option>
+
+                <option>
+                    Suchá
+                </option>
+
+                <option>
+                    Mastná
+                </option>
+
+                <option>
+                    Zmiešaná
+                </option>
+
+                <option>
+                    Normálna
+                </option>
+
+                <option>
+                    Citlivá
+                </option>
+
+                <option>
+                    Neviem
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Ako sa tvoja pleť momentálne správa?
+            </label>
+
+            <textarea
+                id="condition"
+                placeholder="Napr. mastí sa v T-zóne, šúpe sa, pne, začervenáva sa...">
+            </textarea>
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Aký je tvoj hlavný problém?
+            </label>
+
+            <textarea
+                id="problem"
+                placeholder="Akné, čierne bodky, suchosť, pigmentácia, vrásky...">
+            </textarea>
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Ako citlivá je tvoja pleť?
+            </label>
+
+            <select id="sensitivity">
+
+                <option value="">
+                    Vyber možnosť
+                </option>
+
+                <option>
+                    Veľmi citlivá
+                </option>
+
+                <option>
+                    Trochu citlivá
+                </option>
+
+                <option>
+                    Necitlivá
+                </option>
+
+                <option>
+                    Neviem
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Akú rutinu momentálne používaš?
+            </label>
+
+            <textarea
+                id="routine"
+                placeholder="Čistenie, sérum, krém, SPF...">
+            </textarea>
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Ako často používaš SPF?
+            </label>
+
+            <select id="spf">
+
+                <option value="">
+                    Vyber možnosť
+                </option>
+
+                <option>
+                    Každý deň
+                </option>
+
+                <option>
+                    Občas
+                </option>
+
+                <option>
+                    Takmer nikdy
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Aké produkty alebo ingrediencie nechceš používať?
+            </label>
+
+            <textarea
+                id="avoid"
+                placeholder="Ak nevieš, môžeš nechať prázdne.">
+            </textarea>
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Koľko času chceš venovať starostlivosti ráno a večer?
+            </label>
+
+            <select id="time">
+
+                <option value="">
+                    Vyber možnosť
+                </option>
+
+                <option>
+                    Do 5 minút
+                </option>
+
+                <option>
+                    5–10 minút
+                </option>
+
+                <option>
+                    10–20 minút
+                </option>
+
+                <option>
+                    Viac ako 20 minút
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Aký máš približný rozpočet na kozmetiku mesačne?
+            </label>
+
+            <select id="budget">
+
+                <option value="">
+                    Vyber možnosť
+                </option>
+
+                <option>
+                    Do 20 €
+                </option>
+
+                <option>
+                    20–40 €
+                </option>
+
+                <option>
+                    40–70 €
+                </option>
+
+                <option>
+                    70–100 €
+                </option>
+
+                <option>
+                    Viac ako 100 €
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button onclick="createRoutine()">
+
+            ✨ Vytvoriť moju rutinu
+
+        </button>
+
+
+        <div
+            id="result"
+            class="result">
+
+            <h2>
+                💧 Tvoja odporúčaná rutina
+            </h2>
+
+            <p>
+                Tvoje odpovede sú pripravené.
+            </p>
+
+            <p>
+                Po napojení na AI ti systém pripraví
+                personalizovanú rannú a večernú rutinu,
+                odporúčané typy produktov a postupnosť ich používania.
+            </p>
+
+            <ul>
+
+                <li>☀️ ranná rutina</li>
+
+                <li>🌙 večerná rutina</li>
+
+                <li>🧼 čistenie</li>
+
+                <li>💧 hydratácia</li>
+
+                <li>✨ aktívne ingrediencie podľa cieľa</li>
+
+                <li>🧴 SPF</li>
+
+                <li>📅 postupné zavedenie produktov</li>
+
+            </ul>
+
+            <div class="note">
+
+                ⚠️ AI odporúčania nenahrádzajú dermatológa.
+                Pri výrazných alebo pretrvávajúcich kožných problémoch
+                je vhodné obrátiť sa na odborníka.
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="krasa.html"
+        class="back">
+
+        ← Späť na Krása & pleť
+
+    </a>
+
+</main>
+
+
+<script>
+
+function createRoutine() {
+
+    document.getElementById("result").style.display = "block";
+
+    document.getElementById("result").scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+</script>
+
+</body>
+</html>
