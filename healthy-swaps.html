@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Zdravšie alternatívy | AI HUB</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f7f7fb;
+    color: #222;
+}
+
+.hero {
+    background: linear-gradient(135deg, #6c5ce7, #a855b8);
+    color: white;
+    text-align: center;
+    padding: 55px 25px;
+}
+
+.hero h1 {
+    font-size: 40px;
+    margin: 0 0 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+main {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 25px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.question {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 9px;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 16px;
+    background: #fafafa;
+}
+
+textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+button {
+    width: 100%;
+    border: none;
+    border-radius: 14px;
+    padding: 18px;
+    font-size: 18px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #6c5ce7, #a855b8);
+    color: white;
+    cursor: pointer;
+}
+
+.result {
+    display: none;
+    margin-top: 30px;
+    background: #f3f1ff;
+    border-radius: 20px;
+    padding: 25px;
+}
+
+.swap {
+    background: white;
+    border-radius: 15px;
+    padding: 18px;
+    margin-top: 15px;
+}
+
+.swap h3 {
+    margin-top: 0;
+    color: #5b4bc4;
+}
+
+.back {
+    display: block;
+    margin-top: 30px;
+    color: #5b4bc4;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+.note {
+    background: #fff7e6;
+    padding: 15px;
+    border-radius: 14px;
+    line-height: 1.5;
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header class="hero">
+
+<h1>🥗 Zdravšie alternatívy jedál</h1>
+
+<p>
+Napíš, čo bežne ješ, a nájdi jednoduchšie
+alebo výživnejšie alternatívy.
+</p>
+
+</header>
+
+
+<main>
+
+<div class="card">
+
+<h2>🍽️ Čo chceš vymeniť?</h2>
+
+<div class="question">
+
+<label>
+Aké jedlo alebo potravinu chceš nahradiť?
+</label>
+
+<textarea
+id="food"
+placeholder="Napr. pizza, hranolky, sladkosti, majonéza, chipsy..."></textarea>
+
+</div>
+
+
+<div class="question">
+
+<label>
+Prečo ju chceš nahradiť?
+</label>
+
+<select id="reason">
+
+<option value="">Vyber možnosť</option>
+<option>Menej kalórií</option>
+<option>Viac bielkovín</option>
+<option>Menej cukru</option>
+<option>Menej tuku</option>
+<option>Viac vlákniny</option>
+<option>Zdravšie zloženie</option>
+<option>Chcem schudnúť</option>
+<option>Chcem sa stravovať zdravšie</option>
+
+</select>
+
+</div>
+
+
+<div class="question">
+
+<label>
+Čo je pre teba pri alternatíve najdôležitejšie?
+</label>
+
+<select id="priority">
+
+<option value="">Vyber možnosť</option>
+<option>Aby chutila podobne</option>
+<option>Aby bola lacná</option>
+<option>Aby bola rýchla</option>
+<option>Aby bola sýta</option>
+<option>Aby mala veľa bielkovín</option>
+<option>Aby mala čo najmenej kalórií</option>
+
+</select>
+
+</div>
+
+
+<div class="question">
+
+<label>
+Aké potraviny máš rada/rád?
+</label>
+
+<textarea
+id="favorite"
+placeholder="Napíš potraviny, ktoré máš rád/rada a nechceš sa ich vzdať."></textarea>
+
+</div>
+
+
+<div class="question">
+
+<label>
+Akým potravinám sa chceš vyhýbať?
+</label>
+
+<textarea
+id="avoid"
+placeholder="Napr. ryby, mlieko, orechy, konkrétne ingrediencie..."></textarea>
+
+</div>
+
+
+<div class="question">
+
+<label>
+Koľko času máš na prípravu?
+</label>
+
+<select id="time">
+
+<option value="">Vyber možnosť</option>
+<option>Do 10 minút</option>
+<option>10–20 minút</option>
+<option>20–30 minút</option>
+<option>Viac ako 30 minút</option>
+<option>Je mi to jedno</option>
+
+</select>
+
+</div>
+
+
+<div class="question">
+
+<label>
+Aký máš približný rozpočet?
+</label>
+
+<select id="budget">
+
+<option value="">Vyber možnosť</option>
+<option>Čo najlacnejšie</option>
+<option>Stredný rozpočet</option>
+<option>Rozpočet nie je problém</option>
+
+</select>
+
+</div>
+
+
+<button onclick="createSwaps()">
+
+🥗 Nájsť zdravšie alternatívy
+
+</button>
+
+
+<div id="result" class="result">
+
+<h2>✨ Tvoje alternatívy</h2>
+
+<p>
+AI ti bude vedieť navrhnúť viac možností,
+aby si nemusela/musel úplne vyradiť svoje obľúbené jedlá.
+</p>
+
+
+<div class="swap">
+
+<h3>🍕 Príklad: Pizza</h3>
+
+<p>
+Klasickú pizzu môžeš upraviť napríklad použitím
+tenšieho cesta, väčšieho množstva zeleniny a vhodného
+zdroja bielkovín.
+</p>
+
+</div>
+
+
+<div class="swap">
+
+<h3>🍟 Príklad: Hranolky</h3>
+
+<p>
+Alternatívou môžu byť pečené zemiaky alebo zemiakové
+hranolky pripravené v rúre či teplovzdušnej fritéze.
+</p>
+
+</div>
+
+
+<div class="swap">
+
+<h3>🍫 Príklad: Sladkosti</h3>
+
+<p>
+Podľa tvojich preferencií môže AI navrhnúť napríklad
+jogurt s ovocím, tvarohový dezert alebo inú jednoduchú alternatívu.
+</p>
+
+</div>
+
+
+<div class="note">
+
+💡 Neskôr túto funkciu napojíme na AI tak,
+aby porovnala pôvodné jedlo s alternatívou
+a zobrazila napríklad orientačné kalórie,
+bielkoviny, tuky a sacharidy.
+
+</div>
+
+</div>
+
+</div>
+
+
+<a
+href="nutrition.html"
+class="back">
+
+← Späť na Strava & výživa
+
+</a>
+
+</main>
+
+
+<script>
+
+function createSwaps() {
+
+document.getElementById("result").style.display = "block";
+
+document.getElementById("result").scrollIntoView({
+    behavior: "smooth"
+});
+
+}
+
+</script>
+
+</body>
+</html>
