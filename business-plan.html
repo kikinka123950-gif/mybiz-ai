@@ -3,69 +3,539 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Podnikateľský plán | AI HUB</title>
-    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f7f7fb;
+            color: #222;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #6c5ce7, #a855b8);
+            color: white;
+            text-align: center;
+            padding: 55px 25px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin: 0 0 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        main {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 35px;
+            gap: 8px;
+        }
+
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            padding: 12px 5px;
+            border-radius: 12px;
+            background: #e4e4ec;
+            color: #777;
+            font-size: 14px;
+        }
+
+        .progress-step.active {
+            background: #6c5ce7;
+            color: white;
+            font-weight: bold;
+        }
+
+        .card {
+            background: white;
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-top: 0;
+        }
+
+        .subtitle {
+            color: #777;
+            font-size: 17px;
+            margin-bottom: 30px;
+        }
+
+        .question {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            font-size: 17px;
+            margin-bottom: 9px;
+        }
+
+        .optional {
+            color: #888;
+            font-weight: normal;
+            font-size: 14px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-size: 16px;
+            background: #fafafa;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .unknown {
+            margin-top: 8px;
+            display: inline-block;
+            font-size: 14px;
+            color: #6c5ce7;
+            cursor: pointer;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 35px;
+        }
+
+        button {
+            border: none;
+            border-radius: 14px;
+            padding: 16px 25px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .next {
+            background: #6c5ce7;
+            color: white;
+            margin-left: auto;
+        }
+
+        .back {
+            background: #e8e8ef;
+            color: #333;
+        }
+
+        .generate {
+            width: 100%;
+            background: linear-gradient(135deg, #6c5ce7, #a855b8);
+            color: white;
+            font-size: 19px;
+            padding: 18px;
+        }
+
+        .result {
+            display: none;
+            margin-top: 30px;
+            background: #f3f1ff;
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .result h2 {
+            color: #5b4bc4;
+        }
+
+        .back-home {
+            display: block;
+            margin: 30px 0;
+            color: #5b4bc4;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .card {
+                padding: 25px 20px;
+            }
+
+            .progress-step {
+                font-size: 11px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
 <header class="hero">
     <h1>🚀 Podnikateľský plán</h1>
-    <p>Vytvor si jednoduchý podnikateľský plán pomocou AI.</p>
+    <p>
+        Odpovedz na pár otázok a AI ti pripraví
+        personalizovaný podnikateľský plán.
+    </p>
 </header>
 
 <main>
 
-    <section class="tool-box">
+    <div class="progress">
+        <div class="progress-step active">1. Nápad</div>
+        <div class="progress-step">2. Zákazník</div>
+        <div class="progress-step">3. Peniaze</div>
+        <div class="progress-step">4. Marketing</div>
+    </div>
 
-        <h2>Začnme 👇</h2>
+    <div class="card">
 
-        <label>Aký typ podnikania chceš rozbehnúť?</label>
-        <input type="text" id="business" placeholder="Napr. beauty salón">
+        <!-- KROK 1 -->
 
-        <label>V akom meste alebo oblasti?</label>
-        <input type="text" id="location" placeholder="Napr. Nitra">
+        <div class="step active">
 
-        <label>Aký máš približný rozpočet?</label>
-        <input type="text" id="budget" placeholder="Napr. 5 000 €">
+            <h2>💡 1. Tvoj podnikateľský nápad</h2>
 
-        <button onclick="generatePlan()">
-            🚀 Vytvoriť podnikateľský plán
-        </button>
+            <p class="subtitle">
+                Najprv nám povedz základné informácie o tvojom podnikaní.
+            </p>
 
-        <div id="result"></div>
+            <div class="question">
+                <label>Čo chceš podnikať?</label>
+                <input id="business" type="text"
+                    placeholder="Napr. beauty salón, e-shop, kaviareň...">
+            </div>
 
-    </section>
+            <div class="question">
+                <label>Kde chceš podnikať?</label>
+                <input id="location" type="text"
+                    placeholder="Napr. Nitra, Bratislava, celé Slovensko, online...">
+            </div>
 
-    <a href="index.html" class="back-button">
+            <div class="question">
+                <label>Je to nový biznis alebo už podnikáš?</label>
+                <select id="stage">
+                    <option value="">Vyber možnosť</option>
+                    <option>Úplne nový podnikateľský nápad</option>
+                    <option>Už podnikám</option>
+                    <option>Chcem rozšíriť existujúce podnikanie</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>Ako vznikol tvoj nápad?</label>
+                <textarea id="ideaOrigin"
+                    placeholder="Čo ťa priviedlo k tomuto nápadu?"></textarea>
+            </div>
+
+            <div class="question">
+                <label>Aký problém chceš zákazníkom vyriešiť?</label>
+                <textarea id="problem"
+                    placeholder="Čo zákazníkovi uľahčíš, zlepšíš alebo vyriešiš?"></textarea>
+            </div>
+
+            <div class="buttons">
+                <button class="next" onclick="nextStep()">
+                    Ďalej →
+                </button>
+            </div>
+
+        </div>
+
+
+        <!-- KROK 2 -->
+
+        <div class="step">
+
+            <h2>👥 2. Zákazník & konkurencia</h2>
+
+            <p class="subtitle">
+                Čím lepšie poznáme tvojich zákazníkov, tým presnejší bude plán.
+            </p>
+
+            <div class="question">
+                <label>Kto je tvoj ideálny zákazník?</label>
+                <textarea id="customer"
+                    placeholder="Napr. ženy 20–40 rokov, malé firmy..."></textarea>
+            </div>
+
+            <div class="question">
+                <label>Aký vek má približne?</label>
+                <input id="age"
+                    placeholder="Napr. 25–45 rokov">
+            </div>
+
+            <div class="question">
+                <label>Aké má potreby, problémy alebo želania?</label>
+                <textarea id="needs"
+                    placeholder="Čo tvoj zákazník hľadá?"></textarea>
+            </div>
+
+            <div class="question">
+                <label>Kto je tvoja konkurencia?</label>
+                <textarea id="competition"
+                    placeholder="Napíš názvy konkurentov alebo čo ponúkajú."></textarea>
+
+                <span class="unknown"
+                    onclick="setUnknown('competition')">
+                    Neviem – navrhni mi
+                </span>
+            </div>
+
+            <div class="question">
+                <label>V čom sa chceš od konkurencie odlíšiť?</label>
+                <textarea id="difference"
+                    placeholder="Cena, kvalita, služba, rýchlosť, lokalita..."></textarea>
+
+                <span class="unknown"
+                    onclick="setUnknown('difference')">
+                    Neviem – navrhni mi
+                </span>
+            </div>
+
+            <div class="buttons">
+                <button class="back" onclick="prevStep()">
+                    ← Späť
+                </button>
+
+                <button class="next" onclick="nextStep()">
+                    Ďalej →
+                </button>
+            </div>
+
+        </div>
+
+
+        <!-- KROK 3 -->
+
+        <div class="step">
+
+            <h2>💰 3. Peniaze & fungovanie</h2>
+
+            <p class="subtitle">
+                Tieto informácie pomôžu AI pripraviť realistický finančný plán.
+            </p>
+
+            <div class="question">
+                <label>Koľko môžeš investovať na začiatku?</label>
+                <input id="investment"
+                    placeholder="Napr. 5 000 €">
+            </div>
+
+            <div class="question">
+                <label>Koľko chceš približne mesačne zarobiť?</label>
+                <input id="income"
+                    placeholder="Napr. 2 000 €">
+            </div>
+
+            <div class="question">
+                <label>Za aký čas chceš byť v zisku?</label>
+                <input id="profitTime"
+                    placeholder="Napr. do 6 mesiacov">
+            </div>
+
+            <div class="question">
+                <label>Koľko času chceš podnikaniu venovať?</label>
+                <select id="time">
+                    <option value="">Vyber možnosť</option>
+                    <option>Pár hodín týždenne</option>
+                    <option>Pár hodín denne</option>
+                    <option>Polovičný úväzok</option>
+                    <option>Full-time</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>Budeš podnikať sama alebo s niekým?</label>
+                <select id="team">
+                    <option value="">Vyber možnosť</option>
+                    <option>Sama</option>
+                    <option>S partnerom/partnerkou</option>
+                    <option>S tímom</option>
+                    <option>Ešte neviem</option>
+                </select>
+            </div>
+
+            <div class="buttons">
+                <button class="back" onclick="prevStep()">
+                    ← Späť
+                </button>
+
+                <button class="next" onclick="nextStep()">
+                    Ďalej →
+                </button>
+            </div>
+
+        </div>
+
+
+        <!-- KROK 4 -->
+
+        <div class="step">
+
+            <h2>📣 4. Marketing & ciele</h2>
+
+            <p class="subtitle">
+                Posledný krok. Potom môžeme pripraviť tvoj plán.
+            </p>
+
+            <div class="question">
+                <label>Aké sociálne siete chceš používať?</label>
+                <input id="social"
+                    placeholder="Instagram, TikTok, Facebook...">
+            </div>
+
+            <div class="question">
+                <label>Koľko chceš mesačne investovať do reklamy?</label>
+                <input id="ads"
+                    placeholder="Napr. 100 €">
+            </div>
+
+            <div class="question">
+                <label>Aký typ obsahu chceš vytvárať?</label>
+                <textarea id="content"
+                    placeholder="Reels, TikTok, fotografie, Stories, blog..."></textarea>
+            </div>
+
+            <div class="question">
+                <label>Aký je tvoj hlavný cieľ na najbližších 12 mesiacov?</label>
+                <textarea id="goal"
+                    placeholder="Napr. získať 100 pravidelných zákazníkov..."></textarea>
+            </div>
+
+            <div class="question">
+                <label>Čo je tvoj najväčší strach alebo obava z podnikania?</label>
+                <textarea id="fear"
+                    placeholder="Napíš pokojne úprimne."></textarea>
+            </div>
+
+            <button class="generate" onclick="generatePlan()">
+                ✨ Vytvoriť môj podnikateľský plán
+            </button>
+
+        </div>
+
+
+        <!-- VÝSLEDOK -->
+
+        <div id="result" class="result">
+
+            <h2>📋 Tvoj podnikateľský plán</h2>
+
+            <p>
+                Dotazník bol úspešne odoslaný.
+            </p>
+
+            <p>
+                V ďalšom kroku tento formulár napojíme na AI,
+                ktorá z tvojich odpovedí vytvorí kompletný
+                podnikateľský plán.
+            </p>
+
+        </div>
+
+    </div>
+
+    <a href="index.html" class="back-home">
         ← Späť na AI HUB
     </a>
 
 </main>
 
+
 <script>
-function generatePlan() {
 
-    const business = document.getElementById("business").value;
-    const location = document.getElementById("location").value;
-    const budget = document.getElementById("budget").value;
+    let currentStep = 0;
 
-    document.getElementById("result").innerHTML = `
-        <h2>📋 Tvoj podnikateľský plán</h2>
+    const steps = document.querySelectorAll(".step");
+    const progress = document.querySelectorAll(".progress-step");
 
-        <p><strong>Podnikanie:</strong> ${business}</p>
-        <p><strong>Lokalita:</strong> ${location}</p>
-        <p><strong>Rozpočet:</strong> ${budget}</p>
+    function showStep(number) {
 
-        <hr>
+        steps.forEach((step, index) => {
+            step.classList.toggle("active", index === number);
+        });
 
-        <p>
-        Super! Teraz môžeme pripraviť kompletný plán:
-        cieľových zákazníkov, služby, ceny, marketing,
-        náklady a možnosti rastu.
-        </p>
-    `;
-}
+        progress.forEach((item, index) => {
+            item.classList.toggle("active", index === number);
+        });
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    function nextStep() {
+
+        if (currentStep < steps.length - 1) {
+            currentStep++;
+            showStep(currentStep);
+        }
+    }
+
+    function prevStep() {
+
+        if (currentStep > 0) {
+            currentStep--;
+            showStep(currentStep);
+        }
+    }
+
+    function setUnknown(id) {
+
+        document.getElementById(id).value =
+            "Neviem – navrhni mi podľa môjho podnikateľského nápadu.";
+    }
+
+    function generatePlan() {
+
+        document.querySelector(".card").scrollIntoView({
+            behavior: "smooth"
+        });
+
+        document.getElementById("result").style.display = "block";
+    }
+
 </script>
 
 </body>
