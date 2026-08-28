@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Získaj zákazníkov | AI HUB</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f7f7fb;
+            color: #222;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #6c5ce7, #a855b8);
+            color: white;
+            text-align: center;
+            padding: 55px 25px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin: 0 0 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        main {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .progress {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            padding: 12px 5px;
+            border-radius: 12px;
+            background: #e4e4ec;
+            color: #777;
+            font-size: 14px;
+        }
+
+        .progress-step.active {
+            background: #6c5ce7;
+            color: white;
+            font-weight: bold;
+        }
+
+        .card {
+            background: white;
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-top: 0;
+        }
+
+        .subtitle {
+            color: #777;
+            font-size: 17px;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        .question {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            font-size: 17px;
+            margin-bottom: 9px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-size: 16px;
+            background: #fafafa;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 35px;
+        }
+
+        button {
+            border: none;
+            border-radius: 14px;
+            padding: 16px 25px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .next {
+            background: #6c5ce7;
+            color: white;
+            margin-left: auto;
+        }
+
+        .back {
+            background: #e8e8ef;
+            color: #333;
+        }
+
+        .generate {
+            width: 100%;
+            background: linear-gradient(135deg, #6c5ce7, #a855b8);
+            color: white;
+            font-size: 19px;
+            padding: 18px;
+        }
+
+        .result {
+            display: none;
+            margin-top: 30px;
+            background: #f3f1ff;
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .back-home {
+            display: block;
+            margin: 30px 0;
+            color: #5b4bc4;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .card {
+                padding: 25px 20px;
+            }
+
+            .progress-step {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="hero">
+    <h1>👥 Pomôž mi získať zákazníkov</h1>
+
+    <p>
+        Zistíme, kto sú tvoji zákazníci a ako ich
+        môžeš efektívne osloviť.
+    </p>
+</header>
+
+<main>
+
+    <div class="progress">
+        <div class="progress-step active">1. Biznis</div>
+        <div class="progress-step">2. Zákazník</div>
+        <div class="progress-step">3. Ponuka</div>
+        <div class="progress-step">4. Stratégia</div>
+    </div>
+
+    <div class="card">
+
+        <!-- KROK 1 -->
+
+        <div class="step active">
+
+            <h2>💼 1. Tvoje podnikanie</h2>
+
+            <p class="subtitle">
+                Najskôr potrebujeme pochopiť tvoje podnikanie.
+            </p>
+
+            <div class="question">
+                <label>Čo predávaš alebo akú službu ponúkaš?</label>
+
+                <textarea
+                    id="business"
+                    placeholder="Napr. kozmetické služby, oblečenie, kurzy..."></textarea>
+            </div>
+
+            <div class="question">
+                <label>Aký je tvoj hlavný produkt alebo služba?</label>
+
+                <textarea
+                    id="product"
+                    placeholder="Čo chceš najviac predávať?"></textarea>
+            </div>
+
+            <div class="question">
+                <label>Kde podnikáš?</label>
+
+                <input
+                    id="location"
+                    placeholder="Napr. Nitra, Bratislava, online...">
+            </div>
+
+            <div class="question">
+                <label>Je tvoj biznis nový alebo už funguje?</label>
+
+                <select id="stage">
+                    <option value="">Vyber možnosť</option>
+                    <option>Úplne nový</option>
+                    <option>Už funguje</option>
+                    <option>Chcem ho rozšíriť</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>Čím sa podľa teba odlišuješ od konkurencie?</label>
+
+                <textarea
+                    id="difference"
+                    placeholder="Cena, kvalita, osobný prístup, rýchlosť..."></textarea>
+            </div>
+
+            <div class="buttons">
+                <button class="next" onclick="nextStep()">
+                    Ďalej →
+                </button>
+            </div>
+
+        </div>
+
+
+        <!-- KROK 2 -->
+
+        <div class="step">
+
+            <h2>🎯 2. Tvoj ideálny zákazník</h2>
+
+            <p class="subtitle">
+                Čím presnejšie poznáme zákazníka,
+                tým ľahšie ho dokážeme osloviť.
+            </p>
+
+            <div class="question">
+                <label>Kto je tvoj ideálny zákazník?</label>
+
+                <textarea
+                    id="customer"
+                    placeholder="Napr. ženy 25–45 rokov..."></textarea>
+            </div>
+
+            <div class="question">
+                <label>Aký vek má?</label>
+
+                <input
+                    id="age"
+                    placeholder="Napr. 25–45 rokov">
+            </div>
+
+            <div class="question">
+                <label>Aký problém chce vyriešiť?</label>
+
+                <textarea
+                    id="problem"
+                    placeholder="Čo zákazník potrebuje alebo čo ho trápi?"></textarea>
+            </div>
+
+            <div class="question">
+                <label>Čo zákazník najviac oceňuje?</label>
+
+                <textarea
+                    id="values"
+                    placeholder="Cena, kvalita, rýchlosť, pohodlie..."></textarea>
+            </div>
+
+            <div class="question">
+                <label>Kde sa tvoji zákazníci nachádzajú?</label>
+
+                <input
+                    id="customerPlace"
+                    placeholder="Instagram, TikTok, Facebook, Google, osobne...">
+            </div>
+
+            <div class="buttons">
+
+                <button class="back" onclick="prevStep()">
+                    ← Späť
+                </button>
+
+                <button class="next" onclick="nextStep()">
+                    Ďalej →
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- KROK 3 -->
+
+        <div class="step">
+
+            <h2>💰 3. Ponuka & predaj</h2>
+
+            <p class="subtitle">
+                Pozrieme sa na to, čo zákazníkovi ponúkaš
+                a ako ho môžeš presvedčiť ku kúpe.
+            </p>
+
+            <div class="question">
+                <label>Koľko stojí tvoj hlavný produkt/služba?</label>
+
+                <input
+                    id="price"
+                    placeholder="Napr. 50 €">
+            </div>
+
+            <div class="question">
+                <label>Aká je približne hodnota priemerného nákupu?</label>
+
+                <input
+                    id="averageOrder"
+                    placeholder="Napr. 80 €">
+            </div>
+
+            <div class="question">
+                <label>Prečo by mal zákazník kúpiť práve teraz?</label>
+
+                <textarea
+                    id="urgency"
+                    placeholder="Akcia, limitovaná ponuka, potreba zákazníka..."></textarea>
+            </div>
+
+            <div class="question">
+                <label>Máš nejakú špeciálnu ponuku?</label>
+
+                <textarea
+                    id="offer"
+                    placeholder="Zľava, balíček, bonus, doprava zdarma..."></textarea>
+            </div>
+
+            <div class="question">
+                <label>Čo ti momentálne najviac bráni získavať zákazníkov?</label>
+
+                <textarea
+                    id="obstacle"
+                    placeholder="Málo ľudí o mne vie, reklama nefunguje, vysoká konkurencia..."></textarea>
+            </div>
+
+            <div class="buttons">
+
+                <button class="back" onclick="prevStep()">
+                    ← Späť
+                </button>
+
+                <button class="next" onclick="nextStep()">
+                    Ďalej →
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- KROK 4 -->
+
+        <div class="step">
+
+            <h2>📣 4. Stratégia získavania zákazníkov</h2>
+
+            <p class="subtitle">
+                Posledný krok. Povedz nám, čo chceš dosiahnuť.
+            </p>
+
+            <div class="question">
+                <label>Koľko nových zákazníkov chceš mesačne?</label>
+
+                <input
+                    id="customerGoal"
+                    placeholder="Napr. 30">
+            </div>
+
+            <div class="question">
+                <label>Koľko môžeš mesačne investovať do reklamy?</label>
+
+                <input
+                    id="ads"
+                    placeholder="Napr. 100 €">
+            </div>
+
+            <div class="question">
+                <label>Chceš získavať zákazníkov hlavne online alebo osobne?</label>
+
+                <select id="method">
+                    <option value="">Vyber možnosť</option>
+                    <option>Online</option>
+                    <option>Osobne</option>
+                    <option>Kombinovane</option>
+                    <option>Neviem – navrhni mi</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>Koľko času môžeš venovať marketingu?</label>
+
+                <select id="marketingTime">
+                    <option value="">Vyber možnosť</option>
+                    <option>30 minút denne</option>
+                    <option>1 hodina denne</option>
+                    <option>2+ hodiny denne</option>
+                    <option>Niekoľko hodín týždenne</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>Čo chceš, aby AI vytvorila?</label>
+
+                <textarea
+                    id="help"
+                    placeholder="Napr. plán na Instagram, reklamu, ponuku, stratégiu..."></textarea>
+            </div>
+
+            <button class="generate" onclick="generatePlan()">
+                ✨ Vytvoriť plán získavania zákazníkov
+            </button>
+
+        </div>
+
+
+        <!-- VÝSLEDOK -->
+
+        <div id="result" class="result">
+
+            <h2>📋 Tvoj plán získavania zákazníkov</h2>
+
+            <p>
+                Tvoje odpovede sú pripravené.
+            </p>
+
+            <p>
+                V ďalšom kroku túto funkciu napojíme na AI,
+                ktorá podľa tvojich odpovedí vytvorí konkrétnu
+                stratégiu získavania zákazníkov.
+            </p>
+
+        </div>
+
+    </div>
+
+    <a href="podnikanie.html" class="back-home">
+        ← Späť na Podnikanie
+    </a>
+
+</main>
+
+
+<script>
+
+    let currentStep = 0;
+
+    const steps = document.querySelectorAll(".step");
+    const progress = document.querySelectorAll(".progress-step");
+
+    function showStep(number) {
+
+        steps.forEach((step, index) => {
+
+            step.classList.toggle(
+                "active",
+                index === number
+            );
+
+        });
+
+        progress.forEach((item, index) => {
+
+            item.classList.toggle(
+                "active",
+                index === number
+            );
+
+        });
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+
+    function nextStep() {
+
+        if (currentStep < steps.length - 1) {
+
+            currentStep++;
+
+            showStep(currentStep);
+
+        }
+
+    }
+
+
+    function prevStep() {
+
+        if (currentStep > 0) {
+
+            currentStep--;
+
+            showStep(currentStep);
+
+        }
+
+    }
+
+
+    function generatePlan() {
+
+        document.getElementById("result").style.display = "block";
+
+        document.getElementById("result").scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
+
+</script>
+
+</body>
+</html>
