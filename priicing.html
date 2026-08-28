@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cenotvorba | AI HUB</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f7f7fb;
+            color: #222;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #6c5ce7, #a855b8);
+            color: white;
+            text-align: center;
+            padding: 55px 25px;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            margin: 0 0 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            line-height: 1.5;
+        }
+
+        main {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .question {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            font-size: 17px;
+            margin-bottom: 9px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-size: 16px;
+            background: #fafafa;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            border: none;
+            border-radius: 14px;
+            padding: 18px;
+            font-size: 18px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #6c5ce7, #a855b8);
+            color: white;
+            cursor: pointer;
+        }
+
+        .result {
+            display: none;
+            margin-top: 30px;
+            background: #f3f1ff;
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .back {
+            display: block;
+            margin-top: 30px;
+            color: #5b4bc4;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="hero">
+
+    <h1>💰 Pomôž mi s cenotvorbou</h1>
+
+    <p>
+        Zisti, ako nastaviť ceny svojich služieb alebo produktov.
+    </p>
+
+</header>
+
+
+<main>
+
+    <div class="card">
+
+        <h2>💡 Nastavme tvoje ceny</h2>
+
+
+        <div class="question">
+
+            <label>
+                Čo predávaš alebo akú službu ponúkaš?
+            </label>
+
+            <textarea
+                id="product"
+                placeholder="Napr. fotenie, kozmetické služby, oblečenie, online kurz...">
+            </textarea>
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Koľko ťa približne stojí vytvorenie produktu alebo poskytnutie služby?
+            </label>
+
+            <input
+                id="cost"
+                placeholder="Napr. 20 €">
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Koľko za to momentálne účtuješ?
+            </label>
+
+            <input
+                id="currentPrice"
+                placeholder="Napr. 50 €">
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Koľko zákazníkov alebo objednávok máš mesačne?
+            </label>
+
+            <input
+                id="orders"
+                placeholder="Napr. 30">
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Aký typ zákazníkov chceš osloviť?
+            </label>
+
+            <select id="customers">
+
+                <option value="">
+                    Vyber možnosť
+                </option>
+
+                <option>
+                    Nízkorozpočtoví zákazníci
+                </option>
+
+                <option>
+                    Stredná trieda
+                </option>
+
+                <option>
+                    Prémioví zákazníci
+                </option>
+
+                <option>
+                    Neviem – chcem odporúčanie
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Čo chceš dosiahnuť?
+            </label>
+
+            <select id="goal">
+
+                <option value="">
+                    Vyber možnosť
+                </option>
+
+                <option>
+                    Viac zákazníkov
+                </option>
+
+                <option>
+                    Vyšší zisk
+                </option>
+
+                <option>
+                    Prémiovejšie služby
+                </option>
+
+                <option>
+                    Stabilný mesačný príjem
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Aká je tvoja konkurencia a približné ceny?
+            </label>
+
+            <textarea
+                id="competition"
+                placeholder="Napr. konkurencia účtuje 40–60 €">
+            </textarea>
+
+        </div>
+
+
+        <button onclick="calculatePrice()">
+            💰 Navrhni mi ideálnu cenu
+        </button>
+
+
+        <div id="result" class="result">
+
+            <h2>📊 Tvoj cenový návrh</h2>
+
+            <p>
+                Výborne! Máme údaje potrebné na vytvorenie cenovej stratégie.
+            </p>
+
+            <p>
+                Po napojení na AI ti systém vypočíta:
+            </p>
+
+            <ul>
+                <li>💰 odporúčanú cenu</li>
+                <li>📈 približnú maržu</li>
+                <li>🎯 vhodnú cenovú kategóriu</li>
+                <li>🏆 prémiovú variantu</li>
+                <li>📦 návrh balíčkov služieb</li>
+                <li>💡 ako cenu zákazníkovi odkomunikovať</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="podnikanie.html"
+        class="back">
+
+        ← Späť na Podnikanie
+
+    </a>
+
+</main>
+
+
+<script>
+
+function calculatePrice() {
+
+    document.getElementById("result").style.display = "block";
+
+    document.getElementById("result").scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+</script>
+
+</body>
+</html>
