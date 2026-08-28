@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Podnikateľský nápad | AI HUB</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f7f7fb;
+            color: #222;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #6c5ce7, #a855b8);
+            color: white;
+            text-align: center;
+            padding: 55px 25px;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            margin: 0 0 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            line-height: 1.5;
+        }
+
+        main {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .question {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            font-size: 17px;
+            margin-bottom: 9px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-size: 16px;
+            background: #fafafa;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            border: none;
+            border-radius: 14px;
+            padding: 18px;
+            font-size: 18px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #6c5ce7, #a855b8);
+            color: white;
+            cursor: pointer;
+        }
+
+        .result {
+            display: none;
+            margin-top: 30px;
+            background: #f3f1ff;
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .back {
+            display: block;
+            margin-top: 30px;
+            color: #5b4bc4;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="hero">
+
+    <h1>💡 Vymysli podnikateľský nápad</h1>
+
+    <p>
+        AI ti pomôže nájsť podnikateľský nápad podľa tvojich možností,
+        skúseností a záujmov.
+    </p>
+
+</header>
+
+
+<main>
+
+    <div class="card">
+
+        <h2>🚀 Povedz nám niečo o sebe</h2>
+
+
+        <div class="question">
+
+            <label>
+                Čo ťa baví alebo v čom si dobrá?
+            </label>
+
+            <textarea
+                id="skills"
+                placeholder="Napr. kozmetika, fotenie, sociálne siete, varenie...">
+            </textarea>
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Aké máš pracovné alebo odborné skúsenosti?
+            </label>
+
+            <textarea
+                id="experience"
+                placeholder="Napr. pracovala som v obchode, som fotografka...">
+            </textarea>
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Koľko času môžeš podnikaniu venovať?
+            </label>
+
+            <select id="time">
+
+                <option value="">
+                    Vyber možnosť
+                </option>
+
+                <option>
+                    Menej ako 5 hodín týždenne
+                </option>
+
+                <option>
+                    5–10 hodín týždenne
+                </option>
+
+                <option>
+                    10–20 hodín týždenne
+                </option>
+
+                <option>
+                    Viac ako 20 hodín týždenne
+                </option>
+
+                <option>
+                    Chcem sa tomu venovať naplno
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Aký máš približný rozpočet?
+            </label>
+
+            <input
+                id="budget"
+                placeholder="Napr. 500 €">
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Chceš podnikať online alebo osobne?
+            </label>
+
+            <select id="type">
+
+                <option value="">
+                    Vyber možnosť
+                </option>
+
+                <option>
+                    Iba online
+                </option>
+
+                <option>
+                    Iba osobne
+                </option>
+
+                <option>
+                    Kombinácia online a osobne
+                </option>
+
+                <option>
+                    Neviem – chcem odporúčanie
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                V akom meste alebo oblasti chceš podnikať?
+            </label>
+
+            <input
+                id="location"
+                placeholder="Napr. Nitra a okolie">
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Aký príjem by si chcela dosahovať mesačne?
+            </label>
+
+            <input
+                id="income"
+                placeholder="Napr. 2 000 €">
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                Čomu sa chceš pri podnikaní vyhnúť?
+            </label>
+
+            <textarea
+                id="avoid"
+                placeholder="Napr. nechcem veľké priestory, nechcem veľké investície...">
+            </textarea>
+
+        </div>
+
+
+        <button onclick="generateIdea()">
+            ✨ Vymysli mi podnikateľský nápad
+        </button>
+
+
+        <div id="result" class="result">
+
+            <h2>💡 Tvoj podnikateľský nápad</h2>
+
+            <p>
+                Super! Na základe tvojich odpovedí ti AI pripraví
+                konkrétne podnikateľské možnosti.
+            </p>
+
+            <ul>
+                <li>💡 3–5 vhodných podnikateľských nápadov</li>
+                <li>🎯 pre koho je každý nápad určený</li>
+                <li>💰 odhad potrebnej investície</li>
+                <li>📈 potenciál zárobku</li>
+                <li>📱 ako začať získavať zákazníkov</li>
+                <li>🚀 prvé kroky na spustenie</li>
+                <li>📅 30-dňový plán začiatku</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="podnikanie.html"
+        class="back">
+
+        ← Späť na Podnikanie
+
+    </a>
+
+</main>
+
+
+<script>
+
+function generateIdea() {
+
+    document.getElementById("result").style.display = "block";
+
+    document.getElementById("result").scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+</script>
+
+</body>
+</html>
