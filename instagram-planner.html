@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagram plánovač | AI HUB</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="hero">
+  <h1>📱 Instagram plánovač</h1>
+  <p>Vytvor si personalizovaný obsahový plán pomocou AI.</p>
+</header>
+
+<main>
+
+  <h2 class="section-title">🎯 Povedz nám niečo o svojom Instagrame</h2>
+
+  <div class="question">
+    <label>Čomu sa venuje tvoj Instagram?</label>
+    <input id="topic" type="text" placeholder="Napr. fitness, beauty, podnikanie">
+  </div>
+
+  <div class="question">
+    <label>Aký je tvoj hlavný cieľ?</label>
+    <select id="goal">
+      <option value="">Vyber možnosť</option>
+      <option>Viac followerov</option>
+      <option>Viac zákazníkov</option>
+      <option>Viac objednávok</option>
+      <option>Budovanie osobnej značky</option>
+      <option>Väčší dosah a engagement</option>
+    </select>
+  </div>
+
+  <div class="question">
+    <label>Kto je tvoja cieľová skupina?</label>
+    <input id="audience" type="text" placeholder="Napr. ženy 20–35 rokov">
+  </div>
+
+  <div class="question">
+    <label>Ako často chceš pridávať obsah?</label>
+    <select id="frequency">
+      <option value="">Vyber možnosť</option>
+      <option>3× týždenne</option>
+      <option>5× týždenne</option>
+      <option>Každý deň</option>
+      <option>Neviem – nechám si poradiť</option>
+    </select>
+  </div>
+
+  <div class="question">
+    <label>Aký obsah chceš tvoriť?</label>
+    <select id="content">
+      <option value="">Vyber možnosť</option>
+      <option>Reels</option>
+      <option>Príspevky</option>
+      <option>Stories</option>
+      <option>Reels + príspevky + Stories</option>
+    </select>
+  </div>
+
+  <div class="question">
+    <label>Aký štýl komunikácie chceš?</label>
+    <select id="style">
+      <option value="">Vyber možnosť</option>
+      <option>Profesionálny</option>
+      <option>Priateľský</option>
+      <option>Vtipný</option>
+      <option>Motivačný</option>
+      <option>Luxusný / elegantný</option>
+    </select>
+  </div>
+
+  <button onclick="createInstagramPlan()">
+    📱 Vytvoriť môj Instagram plán
+  </button>
+
+  <div id="result" class="result" style="display:none;">
+
+    <h2>✨ Tvoj Instagram plán</h2>
+
+    <p>
+      Na základe tvojich odpovedí pripravíme personalizovaný obsahový plán.
+    </p>
+
+    <ul>
+      <li>📅 obsahový plán</li>
+      <li>🎬 nápady na Reels</li>
+      <li>📝 návrhy príspevkov</li>
+      <li>📖 nápady na Stories</li>
+      <li>💬 návrhy textov a CTA</li>
+      <li>📈 odporúčania pre rast profilu</li>
+    </ul>
+
+  </div>
+
+  <a href="index.html" class="back-button">
+    ← Späť na AI HUB
+  </a>
+
+</main>
+
+<script>
+
+function createInstagramPlan() {
+
+  const topic = document.getElementById("topic").value;
+  const goal = document.getElementById("goal").value;
+  const audience = document.getElementById("audience").value;
+  const frequency = document.getElementById("frequency").value;
+  const content = document.getElementById("content").value;
+  const style = document.getElementById("style").value;
+
+  if (!topic || !goal || !audience || !frequency || !content || !style) {
+    alert("Prosím, vyplň všetky otázky.");
+    return;
+  }
+
+  document.getElementById("result").style.display = "block";
+
+  document.getElementById("result").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+</script>
+
+</body>
+</html>
