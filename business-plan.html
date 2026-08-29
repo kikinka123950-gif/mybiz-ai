@@ -527,14 +527,80 @@
             "Neviem – navrhni mi podľa môjho podnikateľského nápadu.";
     }
 
-    function generatePlan() {
+    async function generatePlan() {
+    const fields = document.querySelectorAll("input, textarea, select");
 
-        document.querySelector(".card").scrollIntoView({
-            behavior: "smooth"
+    let answers = {};
+
+    fields.forEach(field => {
+        if (field.id) {
+            answers[field.id] = field.value;
+        }
+    });
+
+    const prompt = `
+Si AI podnikateľský poradca.
+
+Na základe odpovedí používateľa vytvor konkrétny, praktický a realistický podnikateľský plán v slovenčine.
+
+Odpovede používateľa:
+${JSON.stringify(answers, null, 2)}
+
+Vytvor:
+1. Zhrnutie podnikateľského nápadu
+2. Cieľového zákazníka
+3. Odporúčaný produkt alebo službu
+4. Cenovú stratégiu
+5. Odhad príjmov a nákladov
+6. Marketingový plán
+7. Sociálne siete a obsah
+8. Konkrétne kroky na prvých 30 dní
+9. Najväčšie riziká a ako ich riešiť
+10. Odporúčanie, čo má používateľ urobiť ako úplne prvý krok
+
+Buď konkrétny a používateľovi tykaj.
+`;
+
+    const result = document.getElementById("result");
+
+    result.style.display = "block";
+    result.scrollIntoView({
+        behavior: "smooth"
+    });
+
+    result.innerHTML = "<h2>🤖 AI pripravuje tvoj podnikateľský plán...</h2>";
+
+    try {
+        const response = await fetch("/api/generate", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                prompt: prompt
+            })
         });
 
-        document.getElementById("result").style.display = "block";
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || "Nastala chyba pri komunikácii s AI.");
+        }
+
+        result.innerHTML = `
+            <h2>📋 Tvoj podnikateľský plán</h2>
+            <div style="white-space: pre-wrap; line-height: 1.6;">
+                ${data.output}
+            </div>
+        `;
+
+    } catch (error) {
+        result.innerHTML = `
+            <h2>❌ Nastala chyba</h2>
+            <p>${error.message}</p>
+        `;
     }
+} }
 
 </script>
 
