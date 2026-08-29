@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Odpoveď zákazníkovi | AI HUB</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f7f7fb;
+    color: #222;
+}
+
+.hero {
+    background: linear-gradient(135deg, #6c5ce7, #a855b8);
+    color: white;
+    text-align: center;
+    padding: 55px 20px;
+}
+
+.hero h1 {
+    font-size: 40px;
+    margin: 0 0 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+main {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 25px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.question {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 9px;
+}
+
+textarea,
+select {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 16px;
+    background: #fafafa;
+}
+
+textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+button {
+    width: 100%;
+    border: none;
+    border-radius: 14px;
+    padding: 18px;
+    font-size: 18px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #6c5ce7, #a855b8);
+    color: white;
+    cursor: pointer;
+}
+
+.result {
+    display: none;
+    margin-top: 30px;
+    background: #f3f1ff;
+    border-radius: 20px;
+    padding: 25px;
+}
+
+.reply-box {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 15px;
+    line-height: 1.6;
+}
+
+.back {
+    display: block;
+    margin-top: 30px;
+    color: #5b4bc4;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+.note {
+    background: #fff7e6;
+    padding: 15px;
+    border-radius: 14px;
+    line-height: 1.5;
+    margin-top: 20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<header class="hero">
+
+<h1>💬 Napíš odpoveď zákazníkovi</h1>
+
+<p>
+AI ti pomôže vytvoriť profesionálnu odpoveď
+na správu, otázku alebo sťažnosť zákazníka.
+</p>
+
+</header>
+
+
+<main>
+
+<div class="card">
+
+<h2>✍️ Čo ti zákazník napísal?</h2>
+
+
+<div class="question">
+
+<label>
+Správa od zákazníka
+</label>
+
+<textarea
+id="message"
+placeholder="Sem skopíruj správu zákazníka..."></textarea>
+
+</div>
+
+
+<div class="question">
+
+<label>
+Aký typ odpovede chceš?
+</label>
+
+<select id="type">
+
+<option value="">
+Vyber možnosť
+</option>
+
+<option>
+Profesionálna
+</option>
+
+<option>
+Priateľská
+</option>
+
+<option>
+Krátka a vecná
+</option>
+
+<option>
+Empatická
+</option>
+
+<option>
+Formálna
+</option>
+
+<option>
+Predajná
+</option>
+
+</select>
+
+</div>
+
+
+<div class="question">
+
+<label>
+Aký tón má odpoveď mať?
+</label>
+
+<select id="tone">
+
+<option value="">
+Vyber možnosť
+</option>
+
+<option>
+Milý
+</option>
+
+<option>
+Sebavedomý
+</option>
+
+<option>
+Pokojný
+</option>
+
+<option>
+Empatický
+</option>
+
+<option>
+Profesionálny
+</option>
+
+<option>
+Neformálny
+</option>
+
+</select>
+
+</div>
+
+
+<div class="question">
+
+<label>
+Čo chceš odpoveďou dosiahnuť?
+</label>
+
+<select id="goal">
+
+<option value="">
+Vyber možnosť
+</option>
+
+<option>
+Vyriešiť problém
+</option>
+
+<option>
+Odpovedať na otázku
+</option>
+
+<option>
+Ospravedlniť sa
+</option>
+
+<option>
+Získať zákazníka
+</option>
+
+<option>
+Predstaviť službu
+</option>
+
+<option>
+Dohodnúť objednávku
+</option>
+
+</select>
+
+</div>
+
+
+<div class="question">
+
+<label>
+Je niečo, čo musí odpoveď obsahovať?
+</label>
+
+<textarea
+id="important"
+placeholder="Napr. cena, termín, telefón, odkaz na objednávku..."></textarea>
+
+</div>
+
+
+<div class="question">
+
+<label>
+Čomu sa má AI v odpovedi vyhnúť?
+</label>
+
+<textarea
+id="avoid"
+placeholder="Napr. príliš formálnemu tónu, dlhým vetám..."></textarea>
+
+</div>
+
+
+<button onclick="createReply()">
+
+💬 Vytvoriť odpoveď
+
+</button>
+
+
+<div id="result" class="result">
+
+<h2>✨ Návrh odpovede</h2>
+
+<div class="reply-box">
+
+<p>
+Dobrý deň,
+</p>
+
+<p>
+ďakujeme za vašu správu. Na základe vašej požiadavky
+vám radi pomôžeme a pripravíme riešenie, ktoré bude
+zodpovedať vašim potrebám.
+</p>
+
+<p>
+Ak máte ďalšie otázky alebo potrebujete doplniť
+informácie, pokojne nás kontaktujte.
+</p>
+
+<p>
+Ďakujeme a prajeme príjemný deň.
+</p>
+
+</div>
+
+<div class="note">
+
+💡 Toto je zatiaľ ukážková odpoveď.
+Po napojení na AI sa text automaticky vytvorí
+podľa správy zákazníka a tvojich nastavení.
+
+</div>
+
+</div>
+
+</div>
+
+
+<a
+href="index.html"
+class="back">
+
+← Späť na AI HUB
+
+</a>
+
+</main>
+
+
+<script>
+
+function createReply() {
+
+const message =
+document.getElementById("message").value;
+
+const type =
+document.getElementById("type").value;
+
+const tone =
+document.getElementById("tone").value;
+
+const goal =
+document.getElementById("goal").value;
+
+
+if (
+!message ||
+!type ||
+!tone ||
+!goal
+) {
+
+alert(
+"Prosím vyplň všetky potrebné otázky."
+);
+
+return;
+
+}
+
+
+document.getElementById("result").style.display =
+"block";
+
+
+document.getElementById("result").scrollIntoView({
+behavior: "smooth"
+});
+
+}
+
+</script>
+
+
+</body>
+
+</html>
