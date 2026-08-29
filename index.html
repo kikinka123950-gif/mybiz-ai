@@ -50,7 +50,368 @@
 
     <div class="quick-tools">
 
-      <button>🚀 Vytvor mi podnikateľský plán</button>
+      <!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Vytvor mi text | AI HUB</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f7f7fb;
+    color: #222;
+}
+
+.hero {
+    background: linear-gradient(135deg, #6c5ce7, #a855b8);
+    color: white;
+    text-align: center;
+    padding: 55px 20px;
+}
+
+.hero h1 {
+    font-size: 40px;
+    margin: 0 0 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+main {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 25px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.question {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 9px;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 16px;
+    background: #fafafa;
+}
+
+textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+button {
+    width: 100%;
+    border: none;
+    border-radius: 14px;
+    padding: 18px;
+    font-size: 18px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #6c5ce7, #a855b8);
+    color: white;
+    cursor: pointer;
+}
+
+.result {
+    display: none;
+    margin-top: 30px;
+    background: #f3f1ff;
+    border-radius: 20px;
+    padding: 25px;
+}
+
+.result-box {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    line-height: 1.7;
+}
+
+.back {
+    display: block;
+    margin-top: 30px;
+    color: #5b4bc4;
+    font-weight: bold;
+    text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<header class="hero">
+
+<h1>✍️ Vytvor mi text</h1>
+
+<p>
+Nechaj AI vytvoriť text podľa toho,
+čo potrebuješ a komu je určený.
+</p>
+
+</header>
+
+<main>
+
+<div class="card">
+
+<h2>📝 Čo potrebuješ napísať?</h2>
+
+<div class="question">
+
+<label>Čo má text obsahovať?</label>
+
+<textarea
+id="topic"
+placeholder="Opíš, čo chceš napísať. Čím viac informácií zadáš, tým presnejší bude výsledok."></textarea>
+
+</div>
+
+
+<div class="question">
+
+<label>Aký typ textu potrebuješ?</label>
+
+<select id="type">
+
+<option value="">Vyber možnosť</option>
+
+<option>Príspevok na sociálne siete</option>
+
+<option>Reklamný text</option>
+
+<option>E-mail</option>
+
+<option>Popis produktu</option>
+
+<option>Oznámenie</option>
+
+<option>Blogový článok</option>
+
+<option>Text na web</option>
+
+<option>Iné</option>
+
+</select>
+
+</div>
+
+
+<div class="question">
+
+<label>Pre koho je text určený?</label>
+
+<input
+id="audience"
+type="text"
+placeholder="Napr. zákazníci, ženy 20–40 rokov, klienti...">
+
+</div>
+
+
+<div class="question">
+
+<label>Aký tón má text mať?</label>
+
+<select id="tone">
+
+<option value="">Vyber možnosť</option>
+
+<option>Profesionálny</option>
+
+<option>Priateľský</option>
+
+<option>Vtipný</option>
+
+<option>Motivačný</option>
+
+<option>Luxusný</option>
+
+<option>Predajný</option>
+
+<option>Jednoduchý a prirodzený</option>
+
+</select>
+
+</div>
+
+
+<div class="question">
+
+<label>Ako dlhý má byť text?</label>
+
+<select id="length">
+
+<option value="">Vyber možnosť</option>
+
+<option>Veľmi krátky</option>
+
+<option>Krátky</option>
+
+<option>Stredne dlhý</option>
+
+<option>Dlhší</option>
+
+<option>Podľa potreby</option>
+
+</select>
+
+</div>
+
+
+<div class="question">
+
+<label>Chceš v texte výzvu k akcii?</label>
+
+<select id="cta">
+
+<option value="">Vyber možnosť</option>
+
+<option>Áno</option>
+
+<option>Nie</option>
+
+<option>Navrhni ju podľa textu</option>
+
+</select>
+
+</div>
+
+
+<div class="question">
+
+<label>Je niečo, čo musí byť v texte?</label>
+
+<textarea
+id="important"
+placeholder="Napr. cena, názov firmy, telefón, web, akcia..."></textarea>
+
+</div>
+
+
+<button onclick="createText()">
+
+✍️ Vytvoriť text
+
+</button>
+
+
+<div id="result" class="result">
+
+<h2>✨ Tvoj text</h2>
+
+<div class="result-box">
+
+<p>
+Tvoje zadanie je pripravené na spracovanie AI.
+</p>
+
+<p>
+Po napojení AI sa tu zobrazí kompletný text
+vytvorený podľa tvojich odpovedí.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<a
+href="index.html"
+class="back">
+
+← Späť na AI HUB
+
+</a>
+
+</main>
+
+
+<script>
+
+function createText() {
+
+const topic =
+document.getElementById("topic").value;
+
+const type =
+document.getElementById("type").value;
+
+const audience =
+document.getElementById("audience").value;
+
+const tone =
+document.getElementById("tone").value;
+
+const length =
+document.getElementById("length").value;
+
+const cta =
+document.getElementById("cta").value;
+
+
+if (
+!topic ||
+!type ||
+!audience ||
+!tone ||
+!length ||
+!cta
+) {
+
+alert(
+"Prosím vyplň všetky potrebné otázky."
+);
+
+return;
+
+}
+
+
+document.getElementById("result").style.display =
+"block";
+
+
+document.getElementById("result").scrollIntoView({
+behavior: "smooth"
+});
+
+}
+
+</script>
+
+</body>
+
+</html>
 
       <button>✨ Vytvor mi skincare rutinu</button>
 
