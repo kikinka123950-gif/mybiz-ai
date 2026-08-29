@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reel Creator | AI HUB</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="hero">
+  <h1>🎬 Reel Creator</h1>
+  <p>Vytvor nápad na Reel, scenár a text pomocou AI.</p>
+</header>
+
+<main>
+
+  <h2 class="section-title">🎯 Nastav svoj Reel</h2>
+
+  <div class="question">
+    <label>O čom má byť Reel?</label>
+    <input id="topic" type="text" placeholder="Napr. cvičenie na zadok">
+  </div>
+
+  <div class="question">
+    <label>Aký je tvoj cieľ?</label>
+    <select id="goal">
+      <option value="">Vyber možnosť</option>
+      <option>Získať viac followerov</option>
+      <option>Získať zákazníkov</option>
+      <option>Predstaviť produkt alebo službu</option>
+      <option>Vzdelávať</option>
+      <option>Zabaviť ľudí</option>
+    </select>
+  </div>
+
+  <div class="question">
+    <label>Pre koho je Reel určený?</label>
+    <input id="audience" type="text" placeholder="Napr. ženy 20–35 rokov">
+  </div>
+
+  <div class="question">
+    <label>Aký štýl chceš?</label>
+    <select id="style">
+      <option value="">Vyber možnosť</option>
+      <option>Vtipný</option>
+      <option>Motivačný</option>
+      <option>Vzdelávací</option>
+      <option>Profesionálny</option>
+      <option>Trendový</option>
+      <option>Emotívny</option>
+    </select>
+  </div>
+
+  <div class="question">
+    <label>Ako dlhý má byť Reel?</label>
+    <select id="duration">
+      <option value="">Vyber možnosť</option>
+      <option>15 sekúnd</option>
+      <option>30 sekúnd</option>
+      <option>60 sekúnd</option>
+      <option>Neviem – nechám si poradiť</option>
+    </select>
+  </div>
+
+  <div class="question">
+    <label>Chceš aj návrh textu do videa a popisu?</label>
+    <select id="extras">
+      <option value="">Vyber možnosť</option>
+      <option>Áno</option>
+      <option>Nie</option>
+    </select>
+  </div>
+
+  <button onclick="createReel()">
+    🎬 Vytvoriť môj Reel
+  </button>
+
+  <div id="result" class="result" style="display:none;">
+
+    <h2>✨ Tvoj Reel je pripravený</h2>
+
+    <p>
+      Na základe tvojich odpovedí pripravíme pomocou AI:
+    </p>
+
+    <ul>
+      <li>💡 originálny nápad na Reel</li>
+      <li>🎬 kompletný scenár</li>
+      <li>🗣️ text, ktorý môžeš povedať vo videu</li>
+      <li>📝 texty do videa</li>
+      <li>📱 popis k Reelu</li>
+      <li>🏷️ vhodné hashtagy</li>
+      <li>📣 výzvu k akcii (CTA)</li>
+    </ul>
+
+  </div>
+
+  <a href="index.html" class="back-button">
+    ← Späť na AI HUB
+  </a>
+
+</main>
+
+<script>
+
+function createReel() {
+
+  const topic = document.getElementById("topic").value;
+  const goal = document.getElementById("goal").value;
+  const audience = document.getElementById("audience").value;
+  const style = document.getElementById("style").value;
+  const duration = document.getElementById("duration").value;
+  const extras = document.getElementById("extras").value;
+
+  if (!topic || !goal || !audience || !style || !duration || !extras) {
+    alert("Prosím, vyplň všetky otázky.");
+    return;
+  }
+
+  document.getElementById("result").style.display = "block";
+
+  document.getElementById("result").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+</script>
+
+</body>
+</html>
